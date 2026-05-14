@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-800;
+  }
+  
+  body {
+    @apply bg-black text-white antialiased;
+  }
+}
+
+/* Scrollbar cyberpunk */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ffff, #a855f7);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00cccc, #9333ea);
+}
+
+/* Animations personnalisées */
+@keyframes glitch-bg {
+  0%, 100% { background-position: 0 0; }
+  20% { background-position: -2px 0; }
+  40% { background-position: 2px 0; }
+  60% { background-position: -1px 0; }
+  80% { background-position: 1px 0; }
+}
+
+.animate-glitch-bg {
+  animation: glitch-bg 0.2s infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(15, 25, 35, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.glass-white {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Sélection */
+::selection {
+  background: rgba(0, 255, 255, 0.3);
+  color: #fff;
+}
