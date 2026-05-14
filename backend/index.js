@@ -107,42 +107,41 @@ app.post("/admin-login", async (req, resp) => {
         console.error("Erreur admin login:", error);
         resp.status(500).send({ error: "Erreur serveur" });
     }
-});// Connexion employé AVEC JWT
-// Connexion employé AVEC JWT - VERSION DEBUG// Connexion citoyen AVEC JWT
+});
+
 app.post("/citoyens/login", async (req, res) => {
-  const { email, motdepasse } = req.body;
-  
-  console.log('🔍 DEBUG Citoyen - Données reçues:', { email });
-  
+  const email = req.body.email?.trim().toLowerCase();
+  const motdepasse = req.body.motdepasse;
+
+  if (!email || !motdepasse) {
+    return res.status(400).json({ error: "Email et mot de passe requis" });
+  }
+
   try {
-    // Chercher le citoyen par email
-    const citoyen = await Citoyen.findOne({ email }).select("+motdepasse"); // le mot de passe est déjà haché
-    if (!citoyen) {
-      return res.status(401).json({ error: "Email ou mot de passe incorrect" });
-    }
+    const citoyen = await Citoyen.findOne({ email }).populate("id_quartier", "nom");
+    console.log("🔍 [LOGIN] Citoyen trouvé :", citoyen ? citoyen.email : "AUCUN");
+    console.log("🔍 [LOGIN] id_quartier après populate :", citoyen?.id_quartier);
 
-    // Vérifier que le compte est actif (optionnel)
-    if (citoyen.statut !== "actif") {
-      return res.status(401).json({ error: "Compte citoyen inactif ou désactivé" });
-    }
+    if (!citoyen) return res.status(401).json({ error: "Email ou mot de passe incorrect" });
+    if (citoyen.statut !== "actif") return res.status(401).json({ error: "Compte inactif" });
 
-    // Comparer les mots de passe
-    const isMatch = await bcrypt.compare(motdepasse, citoyen.motdepasse);
-    if (!isMatch) {
-      return res.status(401).json({ error: "Email ou mot de passe incorrect" });
+    // Comparaison mot de passe (inclure la migration si en clair)
+    const motdepasseStocke = citoyen.motdepasse;
+    let isMatch = false;
+    if (motdepasseStocke.startsWith('$2a$') || motdepasseStocke.startsWith('$2b$')) {
+      isMatch = await bcrypt.compare(motdepasse, motdepasseStocke);
+    } else {
+      isMatch = (motdepasse === motdepasseStocke);
+      if (isMatch) {
+        citoyen.motdepasse = await bcrypt.hash(motdepasse, 10);
+        await citoyen.save();
+      }
     }
+    if (!isMatch) return res.status(401).json({ error: "Email ou mot de passe incorrect" });
 
-    // Générer JWT
+    // Token
     const token = jwt.sign(
-      { 
-        userId: citoyen._id,
-        email: citoyen.email,
-        role: 'citoyen',
-        nom: citoyen.nom,
-        prenom: citoyen.prenom,
-        matricule: citoyen.matricule,
-        quartier: citoyen.id_quartier // sera peuplé côté front si besoin
-      },
+      { userId: citoyen._id, email: citoyen.email, role: 'citoyen', nom: citoyen.nom, prenom: citoyen.prenom, matricule: citoyen.matricule, quartier: citoyen.id_quartier?._id },
       JWT_SECRET,
       { expiresIn: '24h' }
     );
@@ -150,15 +149,11 @@ app.post("/citoyens/login", async (req, res) => {
     const citoyenData = citoyen.toObject();
     delete citoyenData.motdepasse;
 
-    res.json({ 
-      message: "Connexion citoyen réussie",
-      token,
-      citoyen: citoyenData
-    });
-
+    console.log("✅ [LOGIN] Données renvoyées :", citoyenData);
+    res.json({ message: "Connexion réussie", token, citoyen: citoyenData });
   } catch (err) {
-    console.error('Erreur login citoyen:', err);
-    res.status(500).json({ error: "Erreur serveur: " + err.message });
+    console.error(err);
+    res.status(500).json({ error: err.message });
   }
 });
 // Route pour vérifier le token (utile côté frontend)
@@ -391,7 +386,23 @@ app.get("/ressources", async (req, res) => {
     res.status(500).json({ error: "Erreur serveur" });
   }
 });
-// GET : export de toutes les ressources pour Excel
+// GET : toutes les ressources d'un quartier spécifique (actives)
+app.get("/ressources/by-quartier/:quartierId", async (req, res) => {
+  try {
+    const quartierId = req.params.quartierId;
+    console.log("🔍 ID quartier reçu :", quartierId);
+    // Chercher d'abord sans le filtre "active" pour voir
+    const toutes = await Ressource.find({ id_quartier: quartierId }).lean();
+    console.log("📦 Toutes les ressources (sans filtre active) :", toutes.length);
+    // Maintenant avec le filtre
+    const actives = await Ressource.find({ id_quartier: quartierId, statut: "active" }).populate("id_quartier", "nom");
+    console.log("✅ Actives :", actives.length);
+    res.json(actives);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 app.get("/ressources/export", async (req, res) => {
   try {
     const { type, quartier, statut } = req.query;
@@ -514,23 +525,6 @@ app.delete("/ressources/:id", async (req, res) => {
     res.status(500).json({ error: "Erreur serveur" });
   }
 });
-
-// (Optionnel) GET : toutes les ressources d'un quartier spécifique (pratique pour les listes déroulantes)
-app.get("/ressources/by-quartier/:quartierId", async (req, res) => {
-  try {
-    const ressources = await Ressource.find({ id_quartier: req.params.quartierId, statut: "active" })
-      .populate("id_quartier", "nom");
-    res.json(ressources);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-
-
-
-
-
 
 
 
@@ -710,7 +704,63 @@ app.get("/aides/rapport", async (req, res) => {
   }
 });
 
+// POST - Demande d'aide par un citoyen connecté
+app.post("/citoyens/demandes-aide", authenticateToken, requireCitoyen, async (req, res) => {
+  try {
+    const { ressource, quantite, dateDistribution, description } = req.body;
+    const citoyenId = req.user._id;
 
+    // Récupérer le citoyen et son quartier
+    const citoyen = await Citoyen.findById(citoyenId);
+    if (!citoyen) return res.status(404).json({ error: "Citoyen introuvable." });
+
+    const quartierId = citoyen.id_quartier;
+    if (!quartierId) return res.status(400).json({ error: "Vous n'êtes rattaché à aucun quartier." });
+
+    // Vérifier que la ressource existe et appartient bien au même quartier
+    const ressourceDoc = await Ressource.findOne({ _id: ressource, id_quartier: quartierId });
+    if (!ressourceDoc) return res.status(400).json({ error: "Ressource invalide pour votre quartier." });
+
+    if (!quantite || quantite < 1) return res.status(400).json({ error: "Quantité invalide." });
+    if (!dateDistribution) return res.status(400).json({ error: "Date de distribution requise." });
+
+    const nouvelleAide = new Aide({
+      ressource,
+      quantite,
+      dateDistribution,
+      beneficiaire: citoyenId,
+      quartier: quartierId,
+      statut: "en_attente",
+      description: description || ""
+    });
+
+    const saved = await nouvelleAide.save();
+    const populated = await Aide.findById(saved._id)
+      .populate("ressource", "nomres typeres unite")
+      .populate("quartier", "nom")
+      .populate("beneficiaire", "matricule prenom nom");
+
+    res.status(201).json(populated);
+  } catch (err) {
+    console.error("Erreur demande aide:", err);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
+});
+// GET - Voir toutes les demandes du citoyen connecté
+app.get("/citoyens/mes-demandes", authenticateToken, requireCitoyen, async (req, res) => {
+  try {
+    const citoyenId = req.user._id;
+    const aides = await Aide.find({ beneficiaire: citoyenId })
+      .populate("ressource", "nomres typeres unite")
+      .populate("quartier", "nom")
+      .sort({ createdAt: -1 })
+      .lean();
+    res.json(aides);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur." });
+  }
+});
 
 
 // GET : une aide par ID
@@ -951,6 +1001,7 @@ app.delete("/aides/:id", async (req, res) => {
 
 
 
+
 // ========== CITOYENS ==========
 
 // GET : liste paginée, filtrable et triable
@@ -1023,7 +1074,6 @@ app.get("/citoyens/export", async (req, res) => {
     res.status(500).json({ error: "Erreur serveur" });
   }
 });
-
 // POST : créer un citoyen
 app.post("/citoyens", async (req, res) => {
   try {
@@ -1039,9 +1089,9 @@ app.post("/citoyens", async (req, res) => {
       statut
     } = req.body;
 
-    // Champs obligatoires
-    if (!matricule || !prenom || !nom || !cin || !email || !id_quartier || !motdepasse) {
-      return res.status(400).json({ error: "Tous les champs obligatoires sont requis." });
+    // Champs obligatoires (sans motdepasse)
+    if (!matricule || !prenom || !nom || !cin || !email || !id_quartier) {
+      return res.status(400).json({ error: "Tous les champs obligatoires (sauf mot de passe) sont requis." });
     }
 
     // Vérifier si le matricule, cin ou email existe déjà
@@ -1058,8 +1108,9 @@ app.post("/citoyens", async (req, res) => {
       return res.status(400).json({ error: "Quartier inexistant." });
     }
 
-    // Hasher le mot de passe
-    const hashedPassword = await bcrypt.hash(motdepasse, 10);
+    // Définir le mot de passe par défaut
+    const motdepasseFinal = motdepasse && motdepasse.trim() !== "" ? motdepasse : "0000";
+    const hashedPassword = await bcrypt.hash(motdepasseFinal, 10);
 
     const newCitoyen = new Citoyen({
       matricule,
