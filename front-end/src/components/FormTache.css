@@ -1,0 +1,519 @@
+/* === FORMULAIRE TÂCHES - STYLE SIMPLE === */
+
+.tache-forms-container {
+  padding: 20px;
+  margin-left: 205px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.tache-sform {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tache-sform h2 {
+  color: #2c3e50;
+  margin: 0 0 25px 0;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Grid du formulaire */
+.forsm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.fosrm-column,
+.form-columsn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Champs de formulaire */
+.isnputBox,
+.inpustBox,
+.inputBoscx {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.isnputBox input,
+.inpustBox select,
+.inputBoscx textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+.isnputBox input:focus,
+.inpustBox select:focus,
+.inputBoscx textarea:focus {
+  border-color: #007bffb6;
+  outline: none;
+}
+
+.inputBoscx textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.4;
+}
+
+.isnputBox span,
+.inpustBox span,
+.inputBoscx span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Section assignation */
+.assignatssion-section h3 {
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.assignsation-type-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.asssignation-option,
+.assignsation-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.asssignation-option:hover,
+.assignsation-option:hover {
+  border-color: #344455b6;
+  background-color: #f8f9fa;
+}
+
+.asssignation-option input[type="radio"],
+.assignsation-option input[type="radio"] {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Boutons */
+.bsuttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #dee2e6;
+}
+/* === Bouton Valider (Bleu pastel ergonomique) === */
+.btn-gslow {
+  background-color: #78aaf5; /* bleu pastel */
+  color: white;
+  border: 2px solid #5a8fdc;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 150px;
+  box-shadow: 0 2px 6px rgba(90, 143, 220, 0.35);
+}
+
+.btn-gslow:hover {
+  background-color: #5a8fdc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(90, 143, 220, 0.45);
+}
+
+
+/* === Bouton Annuler (Gris pastel moderne) === */
+.btn-cancsel {
+  background-color: #b5b5b5; /* gris pastel */
+  color: white;
+  border: 2px solid #9b9b9b;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  min-width: 110px;
+  box-shadow: 0 2px 6px rgba(155, 155, 155, 0.35);
+}
+
+.btn-cancsel:hover {
+  background-color: #8c8c8c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(140, 140, 140, 0.45);
+}
+
+
+/* Modal */
+.modal-overslay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mosdal {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.mosdal h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.msodal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.msodal-buttons button {
+  background-color: #007bffb6;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.msodal-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .tache-forms-container {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tache-sform {
+    padding: 20px;
+  }
+  
+  .forsm-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .tache-sform h2 {
+    font-size: 24px;
+  }
+  
+  .bsuttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-gslow,
+  .btn-cancsel {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tache-sform {
+    padding: 15px;
+  }
+  
+  .tache-sform h2 {
+    font-size: 20px;
+  }
+  
+  .asssignation-option,
+  .assignsation-option {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .isnputBox input,
+  .inpustBox select,
+  .inputBoscx textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .mosdal {
+    margin: 10px;
+    padding: 20px;
+  }
+}
+
+/* Style spécifique pour le conteneur date limite */
+.inpuxstBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.inpuxstBox span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.inpuxstBox input[type="date"] {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2c3e50;
+}
+
+.inpuxstBox input[type="date"]:focus {
+  border-color: #007bffb6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Style pour l'indicateur de calendrier (Chrome, Safari, Edge) */
+.inpuxstBox input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 3px;
+  margin-right: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.inpuxstBox input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: #f8f9fa;
+}
+
+/* Style pour le texte à l'intérieur du date input */
+.inpuxstBox input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.inpuxstBox input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  background: transparent;
+}
+
+.inpuxstBox input[type="date"]::-webkit-datetime-edit-text {
+  color: #6c757d;
+  padding: 0 2px;
+}
+
+.inpuxstBox input[type="date"]::-webkit-datetime-edit-month-field,
+.inpuxstBox input[type="date"]::-webkit-datetime-edit-day-field,
+.inpuxstBox input[type="date"]::-webkit-datetime-edit-year-field {
+  color: #2c3e50;
+}
+
+/* Pour Firefox */
+.inpuxstBox input[type="date"] {
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Pour Internet Explorer */
+.inpuxstBox input[type="date"]::-ms-clear {
+  display: none;
+}
+
+.inpuxstBox input[type="date"]::-ms-expand {
+  display: none;
+}
+
+/* États de validation */
+.inpuxstBox input[type="date"]:invalid:not(:focus) {
+  border-color: #dc3545;
+}
+
+.inpuxstBox input[type="date"]:valid:not(:focus) {
+  border-color: #28a745;
+}
+
+/* Style au survol */
+.inpuxstBox input[type="date"]:hover {
+  border-color: #007bffb6;
+}
+
+/* Style pour les dates passées (optionnel) */
+.inpuxstBox input[type="date"].past-date {
+  color: #6c757d;
+  background-color: #f8f9fa;
+}
+
+/* Style pour les dates futures (optionnel) */
+.inpuxstBox input[type="date"].future-date {
+  color: #28a745;
+  background-color: #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inpuxstBox input[type="date"] {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .inpuxstBox span {
+    font-size: 13px;
+  }
+}
+/* === MODAL DE CONFIRMATION === */
+
+.modal-overslcsay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.mossdal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.mossdal h3 {
+  margin: 0 0 25px 0;
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.msodsal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.msodsal-buttons button {
+  background-color: #007bffb6;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.msodsal-buttons button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mossdal {
+    margin: 20px;
+    padding: 25px;
+    min-width: auto;
+  }
+  
+  .mossdal h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .msodsal-buttons button {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+}

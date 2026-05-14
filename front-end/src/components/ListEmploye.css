@@ -1,0 +1,818 @@
+/* === CONTAINER PRINCIPAL === */
+.emp-container {
+  margin-left: 210px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === EN-TÊTE === */
+.emp-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 0px;
+}
+
+.emp-header h2 {
+  font-size: 20px;
+  color: #2c3e50 !important;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 5px 0;
+}
+
+/* === BARRE DE RECHERCHE ET ACTIONS/* === ZONE DE RECHERCHE AVEC BOUTON EXCEL === */
+.emp-search-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.emp-search-box input {
+  flex: none ;
+  padding: 6px 10px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  height: 20px;
+}
+
+.emp-search-box input:focus {
+  border-color: #409eff;
+}
+
+/* === BOUTON EXCEL COLORÉ === */
+.emp-btn-excel {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+   background: #78c98f !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #63b57a !important;
+  height: 32px;
+  border: 1px solid #1d7e4f;
+  box-shadow: 0 2px 4px rgba(33, 163, 102, 0.2);
+  margin-left: 8px; /* Espace entre recherche et bouton */
+}
+
+.emp-btn-excel:hover {
+  background: linear-gradient(135deg, #1d7e4f 0%, #166c43 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(33, 163, 102, 0.3);
+}
+
+.emp-btn-excel:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(33, 163, 102, 0.2);
+}
+
+/* Icône Excel */
+.emp-btn-excel svg {
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === FILTRES AVANCÉS HORIZONTAUX ALIGNÉS === */
+.emp-advanced-filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.emp-date-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.emp-date-filter label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555 !important;
+  margin: 0;
+}
+
+.emp-date-filter input {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: white;
+  height: 15px;
+  width: 100px;
+}
+
+.emp-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.emp-filter-group label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #555 !important;
+  margin: 0;
+}
+
+.emp-filter-group select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: white;
+  height: 30px;
+  min-width: 10px;
+}
+
+.emp-btn-reset {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #6c757d;
+  color: white;
+  height: 30px;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: all 0.2s;
+}
+
+.emp-btn-reset:hover {
+  background-color: #5a6268;
+}
+
+/* Scrollbar pour les petits écrans */
+.emp-advanced-filters::-webkit-scrollbar {
+  height: 6px;
+}
+
+.emp-advanced-filters::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.emp-advanced-filters::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.emp-advanced-filters::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === BARRE DE TRI SANS MARGIN BOTTOM === */
+.emp-sort-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Pas de margin-bottom pour coller au tableau */
+  flex-wrap: nowrap;
+}
+
+.emp-sort-box label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #555 !important;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.emp-sort-box select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: white;
+  height: 30px;
+  min-width: 140px;
+}
+
+.emp-sort-box button {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: #f8f9fa;
+  color: #555;
+  height: 30px;
+  transition: all 0.2s;
+}
+
+.emp-sort-box button:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.emp-btn-add {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+   background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+  height: 30px;
+  transition: all 0.2s;
+  margin-right: auto;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.emp-btn-add:hover {
+   background: #2c61b0 !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+}
+/* === CORRECTION DU LIEN AJOUTER EMPLOYÉ === */
+.emp-sort-box a {
+  text-decoration: none;
+  display: flex;
+}
+
+.emp-btn-add {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none; /* Important pour enlever le soulignement */
+  background-color: #007bffb6;
+  color: white;
+  height: 30px;
+  transition: all 0.2s;
+  margin-right: auto;
+  border: none; /* Assure qu'il n'y a pas de bordure */
+  outline: none; /* Enlève le contour au focus */
+}
+
+.emp-btn-add:hover {
+  background-color: #007bff;
+  transform: translateY(-1px);
+  text-decoration: none; /* Important pour hover */
+  color: white; /* Garde la couleur blanche au hover */
+}
+
+/* Enlève tout style de lien par défaut */
+.emp-sort-box a:link,
+.emp-sort-box a:visited,
+.emp-sort-box a:hover,
+.emp-sort-box a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === TABLEAU STYLE PRÉSENCES ALIGNÉ === */
+/* === TABLEAU COMPACT ET ERGONOMIQUE === */
+.emp-table-container {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.emp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #e0e0e0;
+  table-layout: fixed !important;
+}
+
+.emp-table th {
+  background-color: #f8f9fa;
+  padding: 8px 4px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 10px;
+  border-right: 1px solid #e0e0e0;
+  height: 35px;
+}
+
+.emp-table th:last-child {
+  border-right: none;
+}
+
+.emp-table td {
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  border-right: 1px solid #f0f0f0;
+  height: 40px;
+}
+
+.emp-table td:last-child {
+  border-right: none;
+}
+
+.emp-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.emp-table tr:hover {
+  background-color: #f5f7fa;
+}
+
+/* === LARGEURS FIXES COMPACTES === */
+.emp-table th:nth-child(1), .emp-matricule { 
+  width: 70px !important; min-width: 70px !important; max-width: 70px !important; 
+}
+.emp-table th:nth-child(2), .emp-name { 
+  width: 170px !important; min-width: 170px !important; max-width: 170px !important; 
+}
+.emp-table th:nth-child(3) { 
+  width: 100px !important; min-width: 100px !important; max-width: 100px !important; 
+}
+.emp-table th:nth-child(4) { 
+  width: 100px !important; min-width: 100px !important; max-width: 100px !important; 
+}
+.emp-table th:nth-child(5), .emp-poste { 
+  width:120px !important; min-width:120px !important; max-width:120px !important; 
+}
+.emp-table th:nth-child(6) { 
+  width:70px !important; min-width:70px !important; max-width:70px !important; 
+}
+.emp-table th:nth-child(7) { 
+  width: 90px !important; min-width: 90px !important; max-width: 90px !important; 
+}
+.emp-table th:nth-child(8) { 
+  width:40px !important; min-width:40px !important; max-width:40px !important; 
+}
+.emp-table th:nth-child(9) { 
+  width: 60px !important; min-width: 60px !important; max-width: 60px !important; 
+}
+.emp-table th:nth-child(10), .emp-actions { 
+  width: 280px !important; min-width: 280px !important; max-width: 280px !important; 
+}
+
+/* === STYLES DES CELLULES COMPACTES === */
+.emp-matricule {
+  font-size: 10px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.emp-name {
+  font-size: 11px;
+  color: #2c3e50 !important;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.emp-poste {
+  font-size: 10px;
+  color: #5d6d7e !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* === BOUTONS ACTION COMPACTS ET ALIGNÉS === */
+.emp-actions {
+  display: flex;
+  gap: 8px; /* Augmenté l'espace entre tous les boutons */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  min-height: 35px;
+  padding: 0 3px; /* Réduit l'espace sur les côtés */
+}
+.emp-btn-view, .emp-btn-stats, .emp-btn-modify, .emp-btn-delete {
+  padding: 4px 6px;
+  border: none;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  height: 24px;
+  min-width: 50px; /* Réduit la largeur minimale */
+  max-width: 55px; /* Réduit la largeur maximale */
+  justify-content: center;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+/* Espace spécifique entre Statistiques et Modifier */
+.emp-btn-stats {
+  margin-right: 2px; 
+    background-color: #9b59b6;/* Petit espace supplémentaire à droite */
+}
+.emp-btn-stats {
+  min-width: 65px !important; /* Largeur augmentée pour "Statistiques" */
+  max-width: 70px !important;
+  padding: 3px 6px !important; /* Un peu plus de padding horizontal */
+}
+
+.emp-btn-modify {
+  margin-left: 2px; /* Petit espace supplémentaire à gauche */
+   background-color: #2ecc71; /* Vert doux */
+}
+
+/* COULEURS ERGONOMIQUES DOUCES */
+
+
+.emp-btn-view {
+ background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.emp-btn-stats {
+   background: #20849a !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.emp-btn-modify {
+  background: #78c98f !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #63b57a !important;
+}
+
+.emp-btn-delete {
+  background: #e17c7c !important;        /* Rouge pastel */
+  color: white !important;
+  border: 2px solid #cc6666 !important;
+}
+
+.emp-btn-view:hover {
+   background: #134b9f !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+  transform: translateY(-1px);
+}
+
+.emp-btn-stats:hover {
+  background-color: #8e44ad;
+  transform: translateY(-1px);
+}
+
+.emp-btn-modify:hover {
+   background: #167d33 !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #63b57a !important;
+  transform: translateY(-1px);
+}
+
+.emp-btn-delete:hover {
+    background: #a84949 !important;        /* Rouge pastel */
+  color: white !important;
+  border: 2px solid #cc6666 !important;
+  transform: translateY(-1px);
+}
+
+/* Réduire la largeur de la colonne Actions */
+.emp-table th:nth-child(10), .emp-actions { 
+  width: 240px !important; min-width: 240px !important; max-width: 240px !important; 
+}
+
+/* Ajustement de la cellule Actions */
+.emp-table td:nth-child(10) {
+  padding: 4px 2px; /* Réduit encore le padding */
+}
+.emp-btn-delete {
+  background-color: #e74c3c; /* Rouge doux */
+}
+
+.emp-btn-view:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.emp-btn-stats:hover {
+  background-color: #8e44ad;
+  transform: translateY(-1px);
+}
+
+.emp-btn-modify:hover {
+  background-color: #27ae60;
+  transform: translateY(-1px);
+}
+
+.emp-btn-delete:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Icônes adaptées aux boutons compacts */
+.emp-btn-view svg,
+.emp-btn-stats svg,
+.emp-btn-modify svg,
+.emp-btn-delete svg {
+  font-size: 8px;
+  margin-right: 1px;
+}
+
+/* === BADGES DE STATUT COMPACTS === */
+.emp-status-badge {
+  padding: 3px 6px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  color: white !important;
+  border: none;
+}
+
+.emp-status-actif {
+  background-color: #27ae60;
+}
+
+.emp-status-démission {
+  background-color: #f39c12;
+}
+
+.emp-status-licenciement {
+  background-color: #e74c3c;
+}
+
+.emp-status-retraite {
+  background-color: #7f8c8d;
+}
+
+/* === CORRECTION DES LIENS === */
+.emp-actions a {
+  text-decoration: none;
+  display: flex;
+  flex: 1;
+}
+
+.emp-actions a:link,
+.emp-actions a:visited,
+.emp-actions a:hover,
+.emp-actions a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* === PAGINATION STYLE PRÉSENCES === */
+.emp-pagination {
+  position: fixed;
+  bottom: 20px;
+  left:230px;
+  background: #ffffff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  border: 1px solid #e0e0e0;
+}
+
+/* === MODAL DE SUPPRESSION === */
+.emp-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.emp-modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 400px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.emp-modal-content h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.emp-modal-content p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.emp-modal-warning {
+  color: #000000 !important;
+  font-weight: 500;
+  background-color: #fdf2f2;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-left: 4px solid #e74c3c;
+}
+
+.emp-modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.emp-modal-confirm,
+.emp-modal-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.emp-modal-confirm {
+   background: #e17c7c !important;        /* Rouge pastel */
+  color: white !important;
+  border: 2px solid #cc6666 !important;
+}
+
+.emp-modal-confirm:hover:not(:disabled) {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+.emp-modal-cancel {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.emp-modal-cancel:hover:not(:disabled) {
+  background-color: #7f8c8d;
+  transform: translateY(-1px);
+}
+
+.emp-modal-confirm:disabled,
+.emp-modal-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.emp-pagination button {
+  background: #007bffb6;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.emp-pagination button:hover:not(:disabled) {
+  background: #007bff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.emp-pagination button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.emp-pagination span {
+  font-size: 12px;
+  color: #2c3e50;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .emp-pagination {
+    position: static;
+    margin-top: 15px;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .emp-pagination button {
+    min-width: 70px;
+    font-size: 11px;
+  }
+  
+  .emp-pagination span {
+    font-size: 11px;
+  }
+}

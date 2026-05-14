@@ -1,0 +1,699 @@
+/* Styles pour la gestion des congés employé */
+.listconge-containerx {
+  padding: 20px;
+ margin-left: -30px ;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Header centré et organisé */
+.header-controlsx {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-controlsx {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.refresh-btnx {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.refresh-btnx:hover {
+  background-color: #f8f9fa;
+  border-color: #3498db;
+  color: #3498db;
+  transform: translateY(-1px);
+}
+
+/* Navigation du mois */
+.month-navigationx {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.month-navigationx h2 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  min-width: 250px;
+  text-align: center;
+}
+
+.month-navigationx button {
+  background-color: #007bffb6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.month-navigationx button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* Informations employé */
+.employee-infox {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.employee-infox h3 {
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.employee-infox p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.conges-countx {
+  font-weight: 600;
+  color: #2c3e50 !important;
+  margin-top: 10px !important;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+/* Tableau fixe */
+.table-containerx {
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.calendar-tablex {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: fixed;
+}
+
+.calendar-tablex th {
+  background-color: #f8f9fa;
+  padding: 10px 5px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.calendar-tablex th:first-child,
+.calendar-tablex td:first-child {
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 5;
+  min-width: 120px;
+  max-width: 120px;
+  width: 120px;
+}
+
+.calendar-tablex th.day-headerx {
+  width: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  font-size: 10px;
+  padding: 4px 1px;
+}
+
+/* Cellules ultra compactes */
+.calendar-tablex td {
+  padding: 2px 1px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  height: 20px;
+}
+
+.calendar-tablex tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.calendar-tablex tr:hover {
+  background-color: #e9ecef;
+}
+
+.employee-namex {
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 10px !important;
+  text-align: left !important;
+}
+
+.day-cell {
+  width: 25px;
+  min-width: 25px;
+  max-width: 25px;
+  height: 20px;
+  position: relative;
+  font-size: 9px;
+  cursor: pointer;
+  padding: 1px;
+  text-align: center;
+}
+
+.day-cell:hover {
+  background-color: #dee2e6 !important;
+}
+
+/* Styles pour les différents statuts */
+.en-attente {
+  background-color: #fff3cd;
+}
+
+.accepte {
+  background-color: #d4edda;
+}
+
+.refuse {
+  background-color: #f8d7da;
+}
+
+.ferie {
+  background-color: #6a929d80;
+  color: #6c757d;
+}
+
+.weekend {
+  background-color: #6b7d7e9a;
+  color: #6c757d;
+}
+
+.past-day {
+  background-color: #f8f9fa;
+  color: #adb5bd;
+}
+
+/* Contenu des cellules */
+.day-contentx {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-labelx {
+  font-weight: bold;
+  font-size: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.en-attente .mini-labelx {
+  color: #856404;
+}
+
+.accepte .mini-labelx {
+  color: #155724;
+}
+
+.refuse .mini-labelx {
+  color: #721c24;
+}
+
+/* Bouton ajouter mini */
+.add-conge-btnx {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #007bffb6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
+  line-height: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+}
+
+.day-cell:hover .add-conge-btnx {
+  opacity: 1;
+}
+
+/* Liste des congés récents */
+.recent-congesx {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.recent-congesx h4 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.conges-listx {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.conge-itemx {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #dee2e6;
+  font-size: 14px;
+}
+
+.conge-itemx .status-accepté {
+  color: #28a745;
+}
+
+.conge-itemx .status-en_attente {
+  color: #ffc107;
+}
+
+.conge-itemx .status-refusé {
+  color: #dc3545;
+}
+
+.conge-typex {
+  color: #666;
+  font-style: italic;
+  margin-left: auto;
+}
+
+/* Légende */
+.legendx {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legendx .badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge.en-attente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.badge.accepte {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.badge.refuse {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.badge.ferie {
+  background-color: #6a929d80;
+  color: #6c757d;
+}
+
+.badge.weekend {
+  background-color: #6b7d7e9a;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.badge.past-day {
+  background-color: #f8f9fa;
+  color: #adb5bd;
+  border: 1px solid #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .listconge-containerx {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  .header-controlsx {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .month-navigationx {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-controlsx {
+    padding: 15px;
+  }
+  
+  .month-navigationx {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .month-navigationx h2 {
+    font-size: 20px;
+    min-width: auto;
+    order: -1;
+  }
+  
+  .employee-infox {
+    padding: 15px;
+  }
+  
+  .employee-infox h3 {
+    font-size: 18px;
+  }
+  
+  .recent-congesx {
+    padding: 15px;
+  }
+  
+  .recent-congesx h4 {
+    font-size: 16px;
+  }
+  
+  .conge-itemx {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .conge-typex {
+    margin-left: 0;
+  }
+  
+  .legendx {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .calendar-tablex th:first-child,
+  .calendar-tablex td:first-child {
+    min-width: 100px;
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .listconge-containerx {
+    padding: 10px;
+  }
+  
+  .header-controlsx,
+  .employee-infox,
+  .recent-congesx {
+    padding: 12px;
+  }
+  
+  .month-navigationx button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .month-navigationx h2 {
+    font-size: 18px;
+  }
+  
+  .refresh-btnx {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .calendar-tablex {
+    font-size: 11px;
+  }
+  
+  .employee-namex {
+    font-size: 12px;
+    min-width: 80px;
+    max-width: 80px;
+  }
+}
+/* Bouton principal pour nouvelle demande */
+.add-conge-btn-main {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.add-conge-btn-main:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+}
+
+/* Modal pour le formulaire intégré */
+.form-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.form-modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.form-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.form-modal-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+  border-radius: 50%;
+}
+
+/* Formulaire intégré */
+.integrated-form {
+  padding: 20px;
+}
+
+.integrated-form .form-group {
+  margin-bottom: 20px;
+}
+
+.integrated-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.integrated-form input,
+.integrated-form select,
+.integrated-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.integrated-form input:focus,
+.integrated-form select:focus,
+.integrated-form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.integrated-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.integrated-form .form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.integrated-form .form-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.integrated-form .form-buttons button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.integrated-form .form-buttons button[type="submit"]:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.integrated-form .form-buttons button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+.integrated-form .form-buttons button[type="button"]:hover:not(:disabled) {
+  background-color: #545b62;
+}
+
+.integrated-form .form-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Message d'erreur */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Modal de succès */
+.success-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.success-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.success-modal h3 {
+  color: #28a745;
+  margin-top: 0;
+}
+
+.success-modal button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.success-modal button:hover {
+  background-color: #0056b3;
+}

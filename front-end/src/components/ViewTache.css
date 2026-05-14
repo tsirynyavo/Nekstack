@@ -1,0 +1,393 @@
+/* === PAGE VISUALISATION TÂCHE - STYLE COMPACT === */
+
+.view-tache-scontainer {
+  padding: 15px;
+  margin-left: 205px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+/* Header compact */
+.view-tachse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Boutons compacts */
+.bstn, .btsn, .bssstn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bstn.btn-bsack {
+  background: #6c757d;
+  color: white;
+}
+
+.bstn.btn-esdit {
+  background: #007bffb6;
+  color: white;
+}
+
+.bstn.btn-esdit.disabled {
+  background: #adb5bd !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Carte principale compacte */
+.tache-detssails-card {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+/* En-tête tâche compact */
+.tache-hesader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tache-titles-section h1 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.tache-status-secstion {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Badges compacts */
+.priorite-badge, .statut-badge {
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.priorite-haute { background: #dc3545; color: white; }
+.priorite-moyenne { background: #fd7e14; color: white; }
+.priorite-basse { background: #28a745; color: white; }
+.statut-en_cours { background: #007bff; color: white; }
+.statut-terminé { background: #28a745; color: white; }
+.statut-annulé { background: #6c757d; color: white; }
+
+/* Sections compactes */
+.detail-sectiosn {
+  margin-bottom: 15px;
+}
+
+.detail-sectiosn h3 {
+  font-size: 13px;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.description-scontent {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #2c3e50;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  border-left: 3px solid #007bffb6;
+}
+
+/* Grid détails compact */
+.details-grisd {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.detail-itesm, .detail-items {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  font-size: 11px;
+}
+
+.detail-icson, .detail-icosn, .detail-iscon {
+  font-size: 12px;
+  color: #007bffb6;
+  margin-top: 1px;
+}
+
+.detail-constent, .detail-contsent, .detail-consstent {
+  flex: 1;
+}
+
+.detail-constent label, 
+.detail-contsent label, 
+.detail-consstent label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.detail-vaslue, .detail-valsue, .detail-values {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2px;
+}
+
+.detail-subsvalue, .detail-subvalue, .detail-subvalsue {
+  font-size: 10px;
+  color: #6c757d;
+}
+
+.detail-exstra {
+  font-size: 9px;
+  color: #28a745;
+  font-weight: 500;
+}
+
+/* Actions compactes */
+.actions-sectiosn {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.actions-sectiosn h3 {
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+
+.action-buttonss {
+  display: flex;
+  gap: 8px;
+}
+
+.bstn.btn-sucscess {
+  background: #114561;
+  color: white;
+}
+
+.btsn.btn-warnsing {
+  background: #8e0a03b6;
+  color: white;
+}
+
+/* Informations supplémentaires compactes */
+.additionsal-info {
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.additionsal-info h3 {
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+
+.info-sgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  font-size: 11px;
+}
+
+.infos-item, .infso-item, .insfo-item {
+  color: #2c3e50;
+}
+
+.infos-item strong, .infso-item strong, .insfo-item strong {
+  color: #6c757d;
+}
+
+/* Modal compact */
+.modal-overslay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.stsatut-modal {
+  background: white;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.mosdal-header {
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.mosdal-header h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.warnisng-icon {
+  font-size: 14px;
+  color: #fef7f7;
+}
+
+.mossdal-body {
+  padding: 15px;
+  font-size: 11px;
+}
+
+.mossdal-body p {
+  margin: 0 0 10px 0;
+}
+
+.stsatut-change-preview {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.cusrrent-statut, .nessw-statut {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.warnissng-message {
+  background: #ddc5c5;
+  color: #000000;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #f8d7da;
+  font-size: 10px;
+  text-align: center;
+}
+
+.modals-foodter {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 12px 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.btsn.bstn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.bssstn.btn-sduccess {
+  background: #2c1c72;
+  color: white;
+}
+
+.bssstn.btn-dwarning {
+  background: #6c2626e9;
+  color: white;
+}
+
+/* Responsive compact */
+@media (max-width: 1200px) {
+  .view-tache-scontainer {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-tachse-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  
+  .hesader-actiosns {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .tache-hesader {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .details-grisd {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-buttonss {
+    flex-direction: column;
+  }
+  
+  .info-sgrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modals-foodter {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .tache-detssails-card {
+    padding: 10px;
+  }
+  
+  .tache-titles-section h1 {
+    font-size: 16px;
+  }
+  
+  .detail-itesm, .detail-items {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .bstn, .btsn, .bssstn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}

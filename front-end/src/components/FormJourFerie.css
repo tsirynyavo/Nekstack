@@ -1,0 +1,111 @@
+/* === FORMULAIRE JOURS FÉRIÉS SIMPLE === */
+.studecnt-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.studecnt-form h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Champs input */
+.inddputBox,
+.inpuddtBox,
+.inputBddox,
+.inputBoxd {
+  margin-bottom: 20px;
+}
+
+.inddputBox input,
+.inpuddtBox input,
+.inputBddox input,
+.inputBoxd input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.inddputBox input:focus,
+.inpuddtBox input:focus,
+.inputBddox input:focus,
+.inputBoxd input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.inddputBox span,
+.inpuddtBox span,
+.inputBddox span,
+.inputBoxd span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Boutons */
+.buddttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btnaz-glow {
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btnaz-glow:hover {
+  background: #0056b3;
+}
+
+.btazdn-cancel {
+  padding: 12px 24px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btazdn-cancel:hover {
+  background: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .studecnt-form {
+    margin: 15px;
+    padding: 15px;
+  }
+  
+  .buddttons {
+    flex-direction: column;
+  }
+  
+  .btnaz-glow,
+  .btazdn-cancel {
+    width: 100%;
+  }
+}

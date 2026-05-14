@@ -1,0 +1,217 @@
+/* 🌟 Conteneur principal */
+.employee-form-container {
+  margin-left: 250px; /* pour laisser la place à la sidebar si nécessaire */
+  padding: 20px; /* Réduit */
+  font-family: Arial, sans-serif;
+  font-size: 13px; /* taille petite */
+}
+
+/* Formulaire */
+.employee-form {
+  background: #fff;
+  padding: 20px 25px; /* Réduit */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Titre */
+.employee-form h2 {
+  text-align: center;
+  margin-bottom: 25px; /* Réduit */
+  font-size: 16px;
+  color: #333;
+}
+
+/* Conteneur des colonnes */
+.form-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 80px; /* Réduit */
+}
+
+/* 🌿 Colonne gauche */
+.form-gauche {
+  width: 48%;
+}
+
+/* 🌿 Colonne droite */
+.form-droite {
+  width: 48%;
+}
+
+/* Champs communs aux colonnes */
+.inputBox {
+  position: relative;
+  margin-bottom: 10px; /* Réduit */
+  min-height: 42px; /* Réduit */
+}
+
+.inputBox input,
+.inputBox select,
+.inputBox input[type="file"],
+.inputBox input[type="month"],
+.inputBox input[type="date"],
+.inputBox input[type="number"] {
+  width: 100%;
+  padding: 5px 8px; /* Réduit */
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+  height: 30px; /* Réduit */
+}
+
+.inputBox input[type="file"] {
+  height: auto;
+  padding: 4px 8px; /* Réduit */
+}
+
+.inputBox input:focus,
+.inputBox select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52,152,219,0.2);
+}
+
+/* Labels flottants */
+.inputBox span {
+  position: absolute;
+  left: 8px; /* Réduit */
+  top: -8px;
+  background: white;
+  padding: 0 3px; /* Réduit */
+  font-size: 11px;
+  color: #555;
+}
+
+/* Password field */
+.password-field {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 6px; /* Réduit */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 1px; /* Réduit */
+}
+
+.password-info {
+  font-size: 11px;
+  color: #2e7d32;
+  margin-top: 2px; /* Réduit */
+  font-style: italic;
+}
+
+/* Champs conditionnels - REMONTÉ et ÉLARGI */
+.conditional-field {
+  background-color: #f8f9fa;
+  padding: 4px 8px; /* Réduit */
+  border-radius: 4px;
+  border-left: 3px solid #3498db;
+  margin-top: -2px; /* Négatif pour remonter davantage */
+  margin-bottom: 3px; /* Réduit */
+  min-height: 40px; /* Réduit */
+  box-sizing: border-box;
+  width: 102%; /* Élargi à 100% comme les autres */
+}
+
+.conditional-field input {
+  height: 30px; /* Même hauteur réduite */
+  width: 100%; /* Élargi à 100% */
+}
+
+/* Boutons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Réduit */
+  margin-top: 12px; /* Réduit */
+}
+
+.btn-glow, .btn-cancel {
+  padding: 6px 12px; /* Réduit */
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-glow {
+  background: #3498db;
+  color: #fff;
+}
+
+.btn-glow:hover {
+  background: #2980b9;
+}
+
+.btn-cancel {
+  background: #ccc;
+  color: #333;
+}
+
+.btn-cancel:hover {
+  background: #b3b3b3;
+}
+
+/* Modal simple */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  padding: 15px 20px; /* Réduit */
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal button {
+  margin-top: 8px; /* Réduit */
+  padding: 5px 10px; /* Réduit */
+  border: none;
+  border-radius: 5px;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .employee-form-container {
+    margin-left: 0;
+    padding: 10px; /* Réduit */
+  }
+  
+  .form-main {
+    flex-direction: column;
+    gap: 10px; /* Réduit */
+  }
+  
+  .form-gauche, .form-droite {
+    width: 100%;
+  }
+  
+  .inputBox {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,366 @@
+/* === RAPPORT SOLDES CONGÉS - STYLE COMPACT === */
+
+.rapporct-soldes-container {
+  margin-left: 210px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+/* Header compact */
+.rappocrt-header {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.headcer-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.retcour-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.rappocrt-header h1 {
+  font-size: 22px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Section recherche */
+.seacrch-period {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.dacte-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex: 1;
+}
+
+.icnput-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.icnput-group label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.icnput-group select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 11px;
+  min-width: 160px;
+}
+
+.actcion-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.excport-btn, .rescet-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.excport-btn {
+  background: #5db071;
+  color: white;
+}
+
+.rescet-btn {
+  background: #6c757d;
+  color: white;
+}
+
+/* Indicateur employés */
+.stcats-indicator {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.badcge-actif {
+  background: #e7f3ff;
+  color: #0066cc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Contenu du rapport */
+.rappocrt-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.c-period {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.c-period h2 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.ock-badge {
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Tableau principal */
+.tasble-container {
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.soldses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #dee2e6;
+}
+
+.soldses-table th {
+  background: #f8f9fa;
+  padding: 8px 6px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+.soldses-table th:last-child {
+  border-right: none;
+}
+
+.soldses-table td {
+  padding: 6px 5px;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.soldses-table td:last-child {
+  border-right: none;
+}
+
+.soldses-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.soldses-table tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Colonnes spécifiques */
+.emcploye-header, .ecmploye-name {
+  min-width: 150px;
+}
+
+.ecmploye-name strong {
+  font-size: 11px;
+  color: #2c3e50;
+}
+
+.mactricule {
+  font-size: 9px;
+  color: #6c757d;
+  margin-top: 2px;
+}
+
+.depcartement-header, .dcepartement {
+  min-width: 120px;
+}
+
+.toctal-header, .scolde-restant {
+  min-width: 80px;
+  text-align: center;
+}
+
+.scolde-restant strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.soldec-normal {
+  color: #28a745;
+}
+
+.soldec-faible {
+  color: #dc3545;
+  background: #fff5f5;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+/* Pagination */
+.pagsination-info-top {
+  background: #f8f9fa;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.paginaqsction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pagiqscnation-btn, .pagcination-btn {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  background: white;
+  color: #007bff;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.pagiqscnation-btn:hover:not(:disabled), .pagcination-btn:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+}
+
+.pagiqscnation-btn:disabled, .pagcination-btn:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.paginqcation-info {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 12px;
+}
+
+/* Message aucune donnée */
+.nso-data {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .rapporct-soldes-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .seacrch-period {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .dacte-inputs {
+    flex-direction: column;
+  }
+  
+  .actcion-buttons {
+    justify-content: center;
+  }
+  
+  .c-period {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .paginaqsction {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headcer-top {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .soldses-table {
+    font-size: 10px;
+  }
+  
+  .ecmploye-name {
+    min-width: 120px;
+  }
+  
+  .excport-btn, .rescet-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}

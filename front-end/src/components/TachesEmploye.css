@@ -1,0 +1,498 @@
+/* Conteneur principal compact */
+.xtaches-employe-container {
+  background-color: white;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+/* En-tête compact */
+.xtaches-header {
+  border-bottom: 1px solid #697178 ;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xtaches-header h2 {
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.xtaches-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.xfilter-select {
+  border: 1px solid #697178;
+  border-radius: 3px;
+  padding: 4px 8px;
+  background: white;
+  color: #333;
+  font-size: 11px;
+  height: 25px;
+}
+
+.xbtn-reset {
+  background: white;
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  padding: 4px 8px;
+  color: #697178 ;
+  cursor: pointer;
+  font-size: 11px;
+  height: 25px;
+}
+
+/* État vide compact */
+.xno-taches {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  background: white;
+  font-size: 11px;
+}
+
+.xno-taches h3 {
+  margin: 10px 0 5px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Grille ultra compacte */
+.xtaches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Carte de tâche ultra compacte */
+.xtache-card {
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  padding: 12px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xtache-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #697178 ;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.xtache-title-section h3 {
+  margin: 0 0 4px 0;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.xtache-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xtache-assignation {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 10px;
+}
+
+.xtache-status-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-end;
+  min-width: 60px;
+}
+
+/* Badges compacts */
+.xstatut-badge, .xpriorite-badge {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: bold;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.xstatut-en_cours {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #856404;
+}
+
+.xstatut-terminé {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #155724;
+}
+
+.xpriorite-urgente {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #721c24;
+}
+
+.xpriorite-haute {
+  background-color: #ffeaa7;
+  color: #856404;
+  border-color: #856404;
+}
+
+.xpriorite-normale {
+  background-color: #cce7ff;
+  color: #004085;
+  border-color: #004085;
+}
+
+.xpriorite-basse {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border-color: #383d41;
+}
+
+/* Description avec système Voir Plus */
+.xtache-description {
+  color: #666;
+  line-height: 1.3;
+  font-size: 11px;
+  position: relative;
+  overflow: hidden;
+}
+
+.xtache-description.compact {
+  max-height: 32px; /* 2 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.xtache-description.expanded {
+  max-height: none;
+  -webkit-line-clamp: unset;
+}
+
+.xtache-read-more-btn {
+  background: none;
+  border: none;
+  color: #0289ff ;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 0;
+  margin-top: 3px;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.xtache-read-more-btn:hover {
+  color: #0056b3;
+}
+
+/* Détails compacts */
+.xtache-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #697178 ;
+  border-bottom: 1px solid #697178 ;
+  padding: 8px 0;
+}
+
+.xdetail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.xdetail-icon {
+  color: #697178 ;
+  font-size: 10px;
+  margin-top: 1px;
+  min-width: 12px;
+}
+
+.xdetail-content {
+  flex: 1;
+}
+
+.xdetail-content label {
+  font-weight: bold;
+  color: #333;
+  font-size: 9px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.xdetail-value {
+  color: #333;
+  margin-bottom: 2px;
+  font-size: 10px;
+}
+
+.xdetail-subvalue {
+  font-size: 9px;
+  color: #666;
+}
+
+.xdetail-subvalue.success {
+  color: #155724;
+}
+
+.xdetail-subvalue.warning {
+  color: #856404;
+}
+
+.xdetail-subvalue.danger {
+  color: #721c24;
+}
+
+/* Actions compactes */
+.xtache-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.xbtn {
+  padding: 4px 8px;
+  border: 1px solid #697178 ;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Pied de carte compact */
+.xtache-footer {
+  border-top: 1px solid #697178 ;
+  padding-top: 6px;
+  color: #666;
+  font-size: 9px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.xtache-annule-info {
+  color: #dc3545;
+}
+
+/* Statistiques compactes */
+.xtaches-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  margin-bottom: 15px;
+  border-top: 1px solid #697178 ;
+  padding-top: 12px;
+}
+
+.xstat-card {
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  padding: 8px;
+  text-align: center;
+  background: white;
+}
+
+.xstat-card h4 {
+  margin: 0 0 5px 0;
+  color: #666;
+  font-size: 10px;
+}
+
+.xstat-number {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-en-cours {
+  color: #856404;
+}
+
+.stat-termine {
+  color: #155724;
+}
+
+.stat-retard {
+  color: #721c24;
+}
+
+/* Information compacte */
+.xtaches-info {
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  color: #666;
+  font-size: 10px;
+}
+
+.xtaches-info p {
+  margin: 0;
+}
+
+/* Modal compact */
+.xmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.xmodal {
+  background: white;
+  border-radius: 3px;
+  border: 2px solid #697178 ;
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.confirmation-modal {
+  max-width: 450px;
+}
+
+.xmodal-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #697178 ;
+  padding: 12px;
+  gap: 8px;
+}
+
+.xmodal-header h3 {
+  margin: 0;
+  color: #333;
+  flex: 1;
+  font-size: 14px;
+}
+
+.xsuccess-icon {
+  color: #28a745;
+  font-size: 14px;
+}
+
+.xbtn-close-modal {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+}
+
+.xmodal-body {
+  padding: 12px;
+}
+
+.xmodal-body p {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 11px;
+}
+
+.xtache-confirmation-details {
+  border: 1px solid #697178 ;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  font-size: 11px;
+}
+
+.xconfirmation-item {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.xconfirmation-item.highlight {
+  color: #155724;
+  font-weight: bold;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #697178 ;
+}
+
+.xwarning-message {
+  background-color: #fff3cd;
+  border: 1px solid #856404;
+  border-radius: 3px;
+  padding: 6px;
+  color: #856404;
+  font-size: 10px;
+}
+
+.xmodal-footer {
+  border-top: 1px solid #697178 ;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.xbtn-cancel {
+  background-color: white;
+  color: #666;
+  border-color: #666;
+  font-size: 10px;
+  padding: 4px 8px;
+}
+
+.xbtn-cancel:hover {
+  background-color: #f8f9fa;
+}
+
+.xbtn-confirm {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+  font-size: 10px;
+  padding: 4px 8px;
+}
+
+.xbtn-confirm:hover {
+  background-color: #218838;
+}
