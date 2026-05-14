@@ -28,7 +28,7 @@ const aideSchema = new mongoose.Schema({
   },
   statut: {
     type: String,
-    enum: ['planifiée', 'distribuée', 'annulée'],
+    enum: ['planifiée', 'distribuée', 'annulée', 'en_attente'],
     default: 'planifiée'
   },
   description: {
