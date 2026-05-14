@@ -1,6 +1,7 @@
-import { Dashboard } from './pages/Dashboard';
-import { useAuthStore } from './store';
-import { useEffect } from 'react';
+import { Dashboard } from "./pages/Dashboard";
+import RoadTrafficPage from "./pages/RoadTrafficPage";
+import { useAuthStore } from "./store";
+import { useEffect } from "react";
 
 function App() {
   const { login, isAuthenticated } = useAuthStore();
@@ -9,17 +10,17 @@ function App() {
     if (!isAuthenticated) {
       // Connexion automatique immédiate
       login(
-        { 
-          id: 1, 
-          email: 'admin@vanquaire.com', 
-          name: 'Vanquaire Team' 
+        {
+          id: 1,
+          email: "admin@vanquaire.com",
+          name: "Vanquaire Team",
         },
-        'demo-token-vanquaire'
+        "demo-token-vanquaire",
       );
     }
   }, [isAuthenticated, login]);
 
-  return <Dashboard />;
+  return <RoadTrafficPage />;
 }
 
 export default App;
