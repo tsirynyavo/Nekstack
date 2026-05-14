@@ -6,7 +6,7 @@
   * {
     @apply border-gray-800;
   }
-  
+
   body {
     @apply bg-black text-white antialiased;
   }
@@ -34,11 +34,22 @@
 
 /* Animations personnalisées */
 @keyframes glitch-bg {
-  0%, 100% { background-position: 0 0; }
-  20% { background-position: -2px 0; }
-  40% { background-position: 2px 0; }
-  60% { background-position: -1px 0; }
-  80% { background-position: 1px 0; }
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  20% {
+    background-position: -2px 0;
+  }
+  40% {
+    background-position: 2px 0;
+  }
+  60% {
+    background-position: -1px 0;
+  }
+  80% {
+    background-position: 1px 0;
+  }
 }
 
 .animate-glitch-bg {
@@ -63,4 +74,15 @@
 ::selection {
   background: rgba(0, 255, 255, 0.3);
   color: #fff;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: rgba(0, 255, 255, 0.97) !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
 }
