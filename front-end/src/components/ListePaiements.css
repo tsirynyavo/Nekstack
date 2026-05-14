@@ -1,0 +1,1496 @@
+/* === GESTION DES PAIEMENTS === */
+.gestion-paiement {
+  margin-left: 210px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === EN-TÊTE === */
+.headerz {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.headerz h2 {
+  font-size: 22px;
+  color: #6c757d !important; 
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
+/* === FILTRES === *//* === FILTRES === */
+.filters-containerz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* Ligne du bas pour département et rapport */
+.filters-containerz::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #eee;
+  margin: 8px 0;
+}
+
+.filters-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+/* Autres styles restent les mêmes */
+.search-boxz input {
+  padding: 6px 10px;
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+.filter-groupz {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-groupz label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6c757d !important;
+}
+
+.filter-groupz select,
+.filter-groupz input {
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+/* === BOUTONS FILTRES (STYLE PASTEL) === */
+.filters-containerz button {
+  background-color: transparent;          /* pas de fond */
+  color: #2c4f80;                         /* bleu pastel foncé */
+  border: 2px solid #c8c8c8;              /* bordure bleu pastel */
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filters-containerz button:hover:not(:disabled) {
+  background-color: #5a8fdc;              /* bleu pastel */
+  color: white;                            /* texte blanc */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.filters-containerz button:disabled {
+  background-color: transparent;
+  border-color: #c1c1c2;                   /* gris pastel */
+  color: #b8c4d1;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+
+/* Bouton rapport spécifique */
+.btn-rapportz {
+   background-color: transparent;
+  border-color: #c1c1c2;                   /* gris pastel */
+  color: #b8c4d1;
+  margin-left: 0; /* Pousse le bouton à droite */
+}
+
+.btn-rapportz:hover {
+  background: #0e14d2 !important;
+}
+/* === TABLEAU === */
+.table-containerz {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.paiements-tablez {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+  table-layout: fixed !important;
+}
+
+.paiements-tablez th {
+  background-color: #f8f9fa;
+  padding: 8px 4px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 11px;
+  border-right: 1px solid #dee2e6;
+}
+
+.paiements-tablez th:last-child {
+  border-right: none;
+}
+
+.paiements-tablez td {
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+  border-right: 1px solid #dee2e6;
+  color: black !important;
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+.paiements-tablez td:last-child {
+  border-right: none;
+}
+
+.paiements-tablez tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.paiements-tablez tr:hover {
+  background-color: #e9ecef;
+}
+
+/* === COLONNES SPÉCIFIQUES RÉDUITES === */
+.paiements-tablez th:nth-child(1), .matriculez { 
+  width: 60px !important; min-width: 60px !important; max-width: 60px !important; 
+  font-size: 11px; color: black;
+}
+
+.paiements-tablez th:nth-child(2), .nomz { 
+  width: 120px !important; min-width: 120px !important; max-width: 120px !important; 
+  font-size: 12px; color: rgba(11, 6, 6, 0.636) !important; font-family: 'Times New Roman', Times, serif !important;
+}
+
+.paiements-tablez th:nth-child(3), .dernier-moisz { 
+  width: 100px !important; min-width: 100px !important; max-width: 100px !important; 
+  font-size: 11px;
+}
+
+.paiements-tablez th:nth-child(4), .date-paiementz { 
+  width: 80px !important; min-width: 80px !important; max-width: 80px !important; 
+  font-size: 11px;
+}
+
+.paiements-tablez th:nth-child(5), .salaire-basez { 
+  width: 90px !important; min-width: 90px !important; max-width: 90px !important; 
+  font-size: 11px;
+}
+
+.paiements-tablez th:nth-child(6), .enfantsz { 
+  width: 60px !important; min-width: 60px !important; max-width: 60px !important; 
+  font-size: 11px;
+}
+
+.paiements-tablez th:nth-child(7), .statut-paiementz { 
+  width: 80px !important; min-width: 80px !important; max-width: 80px !important; 
+  font-size: 11px;
+}
+
+.paiements-tablez th:nth-child(8), .actionsz { 
+  width: 202px !important; min-width: 280px !important; max-width: 280px !important; 
+  font-size: 11px;
+}
+
+/* === STATUTS === */
+.mois-payze {
+  color: #28a745;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.aucun-paiementzz {
+  color: #6c757d;
+  
+  font-size: 11px;
+}
+
+.date-payez {
+  color: black;
+  font-size: 11px;
+}
+
+.aucune-datez {
+  color: #6c757d;
+  
+  font-size: 11px;
+}
+
+.statut-badgezzz {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.statut-validé {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.statut-payé {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.no-statutz {
+  color: #6c757d;
+
+  font-size: 11px;
+}
+
+/* === BOUTONS ACTIONS === */
+/* === BOUTONS ACTIONS FIXES === */
+/* === BOUTONS ACTIONS FIXES === */
+.actionsz {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  min-height: 32px;
+  flex-wrap: nowrap;
+}
+
+.btn-fichez, .btn-modifierz, .btn-mvolaz, .btn-supprimerz, .btn-creerz {
+  padding: 4px 6px;
+  border: none;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 50px;
+  height: 24px;
+  flex-shrink: 0;
+}/* === BOUTONS ACTIONS — STYLE DOUX ERGONOMIQUE === */
+/* Couleurs des boutons */ .btn-fichez {   background-color: #17a2b8c7;
+  color: white !important;
+  border: 2px solid #148ea1;} .btn-modifierz {   background-color: #5ebf6a;
+  color: white !important;
+  border: 2px solid #4ca458;} .btn-mvolaz { background-color: transparent;
+  color: #c6d400;
+  border: 2px solid #dcf24d; } .btn-supprimerz {  background-color: #e17c7c;
+  color: white !important;
+  border: 2px solid #cc6666; } .btn-creerz {   background-color: #78c98f;
+  color: white !important;
+  border: 2px solid #63b57a;
+ } /* États hover */ .btn-fichez:hover:not(:disabled) {  background-color: #148ea1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12); } .btn-modifierz:hover:not(:disabled) {  background-color: #4ca458;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);} .btn-mvolaz:hover:not(:disabled) {  background-color: #dcf24d;
+  color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); } .btn-supprimerz:hover:not(:disabled) {  background-color: #cc6666;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);} .btn-creerz:hover:not(:disabled) {   background-color: #63b57a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12); } /* États disabled - TOUS LES BOUTONS DÉSACTIVÉS EN GRIS */
+.actionsz button:disabled {
+  background-color: #bfc4c8 !important;
+  border-color: #a5aaae !important;
+  color: #f0f0f0 !important;
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* SUPPRIMER le texte ajouté pour les boutons désactivés */
+/* .actionsz button:disabled::after {
+  content: " (Payé)";
+  font-size: 8px;
+  opacity: 0.8;
+} */
+
+/* === PAGINATION ALIGNÉE === *//* === PAGINATION HORIZONTALE PARFAITE === *//* === PAGINATION STYLE DOUX (comme tes autres boutons) === */
+.paginationzzzz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px auto;
+  padding: 8px 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  width: fit-content;
+}
+
+/* Boutons pagination */
+.pagination-btnzzz, .pagination-btnzz {
+  background-color: transparent;
+  color: #2c4f80;                     /* bleu doux */
+  border: 2px solid #8e8e8e;          /* bordure bleu pastel */
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 85px;
+  height: 32px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.pagination-btnzzz:hover:not(:disabled),
+.pagination-btnzz:hover:not(:disabled) {
+  background-color: #5a8fdc;          /* bleu pastel moderne */
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Disabled */
+.pagination-btnzzz:disabled,
+.pagination-btnzz:disabled {
+  background-color: transparent;
+  border-color: #b8c4d1;              /* bordure grise pastel */
+  color: #b8c4d1;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.pagination-infozz {
+  font-size: 11px;
+  color: #2c3e50;
+  font-weight: 500;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* Compteur employés sur la même ligne */
+.paginationzzzz span:last-of-type {
+  font-size: 11px;
+  color: #6c757d;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+/* === MESSAGES === */
+.error-messagez {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.no-datazzz {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  
+  font-size: 12px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  .gestion-paiement {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters-containerz {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-boxz input {
+    width: 100%;
+  }
+  
+  .filter-groupz {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .actionsz {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .paginationzzzz {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === MODAL HISTORIQUE DES PAIEMENTS === */
+.modal-overlzay {
+  position: fixed;
+  top: 0;
+  left: 220px; /* Marge pour la navigation */
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenzzt.large-modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  max-width: 95%;
+  max-height: 90vh;
+  overflow: auto;
+  width: 1200px; /* Largeur réduite */
+}
+
+.modal-headezr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+}
+
+.modal-headezr h3 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.close-btzzn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+/* === TABLEAU HISTORIQUE COMPACT === */
+.historique-tablez-container {
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.historiquezz-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #dee2e6;
+  table-layout: fixed;
+}
+
+.historiquezz-table th {
+  background-color: #f8f9fa;
+  padding: 6px 4px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 10px;
+  border-right: 1px solid #dee2e6;
+}
+
+.historiquezz-table th:last-child {
+  border-right: none;
+}
+
+.historiquezz-table td {
+  padding: 5px 3px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+  border-right: 1px solid #dee2e6;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.historiquezz-table td:last-child {
+  border-right: none;
+}
+
+/* === COLONNES HISTORIQUE RÉDUITES === */
+.historiquezz-table th:nth-child(1), .historiquezz-table td:nth-child(1) { 
+  width: 80px !important; /* Mois */
+}
+.historiquezz-table th:nth-child(2), .historiquezz-table td:nth-child(2) { 
+  width: 70px !important; /* Date paiement */
+}
+.historiquezz-table th:nth-child(3), .historiquezz-table td:nth-child(3) { 
+  width: 80px !important; /* Salaire net */
+}
+.historiquezz-table th:nth-child(4), .historiquezz-table td:nth-child(4) { 
+  width: 60px !important; /* IRSA */
+}
+.historiquezz-table th:nth-child(5), .historiquezz-table td:nth-child(5) { 
+  width: 60px !important; /* Statut */
+}
+.historiquezz-table th:nth-child(6), .historiquezz-table td:nth-child(6) { 
+  width: 50px !important; /* Taux CIMR */
+}
+.historiquezz-table th:nth-child(7), .historiquezz-table td:nth-child(7) { 
+  width: 50px !important; /* Taux Maladie */
+}
+.historiquezz-table th:nth-child(8), .historiquezz-table td:nth-child(8) { 
+  width: 50px !important; /* Taux Retraite */
+}
+.historiquezz-table th:nth-child(9), .historiquezz-table td:nth-child(9) { 
+  width: 180px !important; /* Actions */
+}
+
+/* === BOUTONS ACTIONS HISTORIQUE === */
+.actions-historizque {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-imprimzer, .btn-zz, .btn-modifiezzr, .btn-supprimzer {
+  padding: 2px 4px;
+  border: none;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 40px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.btn-imprimzer { background-color: #17a2b8; }
+.btn-zz { background-color: #17a2b8; }
+.btn-modifiezzr { background-color:#299e02ba; color:rgb(241, 243, 245)9 !important; }
+.btn-supprimzer { background-color:  #dc3546e2; }
+
+
+.btn-imprimzer:hover:not(:disabled) { background-color: #138496; }
+.btn-zz:hover:not(:disabled) { background-color: #5a36a8; }
+.btn-modifiezzr:hover:not(:disabled) { background-color: #e0a800; }
+.btn-supprimzer:hover:not(:disabled) { background-color: #c82333; }
+
+.actions-historizque button:disabled {
+  background-color: #6c757d !important;
+  color: #f8f9fa !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* === MODAL DÉTAILS COMPACT === */
+.modal-overlazyss {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Aligner en haut */
+  z-index: 1001;
+  padding: 20px 0; /* Espace en haut et bas */
+}
+
+.modal-contenzzt.large-modalss {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 95%;
+  max-width: 900px;
+  max-height: 90vh; /* Limite de hauteur */
+  overflow: auto; /* Scroll si vraiment nécessaire */
+  margin-top: 20px; /* Espace depuis le haut */
+}
+
+.modal-headerssz {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-headerssz h3 {
+  font-size: 14px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.close-btnz {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #6c757d;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btnz:hover {
+  background: #e9ecef;
+  border-radius: 50%;
+}
+
+.details-containssezr {
+  padding: 10px 15px;
+  background: #fff;
+}
+
+/* Grille compacte */
+.details-sectiosnzzz, .details-sesctionz, .detasils-sectionz, .desstails-sectionz {
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.details-sectiosnzzz h4, .details-sesctionz h4, .detasils-sectionz h4, .desstails-sectionz h4 {
+  font-size: 12px;
+  color: #2c3e50;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.details-grssidz {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 6px;
+  font-size: 11px;
+}
+
+.details-grssidz div {
+  padding: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.details-grssidz div:last-child {
+  border-bottom: none;
+}
+
+.details-grssidz strong {
+  color: #495057;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+/* Tableaux compacts */
+.detsails-tablessz, .detasils-tablez, .destails-tablez {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid #dee2e6;
+}
+
+.detsails-tablessz th, .detasils-tablez th, .destails-tablez th {
+  background-color: #f8f9fa;
+  padding: 6px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.detsails-tablessz td, .detasils-tablez td, .destails-tablez td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  color: #546e7a;
+}
+
+.detsails-tablessz tr:last-child td, 
+.detasils-tablez tr:last-child td, 
+.destails-tablez tr:last-child td {
+  border-bottom: none;
+}
+
+.detsails-tablessz tr:nth-child(even), 
+.detasils-tablez tr:nth-child(even), 
+.destails-tablez tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.detsails-tablessz td:last-child, 
+.detasils-tablez td:last-child, 
+.destails-tablez td:last-child {
+  text-align: right;
+  color: #28a745;
+  font-weight: 500;
+}
+
+/* Messages vides */
+.nos-itemsz, .sno-itemsz, .no-itssemsz {
+  font-size: 10px;
+  color: #6c757d;
+
+  text-align: center;
+  padding: 8px;
+  background: white;
+  border: 1px dashed #dee2e6;
+  border-radius: 4px;
+}
+
+.modal-fosssoter {
+  padding: 10px 15px;
+  border-top: 1px solid #dee2e6;
+  text-align: right;
+  background: #f8f9fa;
+}
+
+.btn-secssondaryz {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-secssondaryz:hover {
+  background: #5a6268;
+}
+
+/* Responsive pour très petits écrans */
+@media (max-width: 768px) {
+  .modal-overlazyss {
+    padding: 10px;
+    align-items: flex-start;
+  }
+  
+  .modal-contenzzt.large-modalss {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .details-grssidz {
+    grid-template-columns: 1fr;
+    font-size: 10px;
+  }
+  
+  .details-sectiosnzzz, .details-sesctionz, .detasils-sectionz, .desstails-sectionz {
+    padding: 6px;
+    margin-bottom: 8px;
+  }
+}
+/* === STATUTS ET STYLES SPÉCIAUX === */
+.statut-badge {
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.statut-validé {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.statut-payé {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.dernier-paiement-ligne {
+  background-color: #e7f3ff !important;
+  border-left: 3px solid #007bff;
+}
+
+.no-dataz {
+  text-align: center;
+  padding: 15px;
+  color: #6c757d;
+  
+  font-size: 11px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  .modal-overlzay {
+    left: 0;
+  }
+  
+  .modal-contenzzt.large-modal {
+    width: 98%;
+    margin: 10px;
+  }
+}
+/* === BOUTONS ACTIONS HISTORIQUE FIXES === */
+
+
+.actions-historizque {
+  display: flex;
+  gap: 3px;
+  justify-content: center; /* ⬅️ CHANGÉ: centre au lieu de space-between */
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  min-width: 150px; /* ⬅️ RÉDUIT: de 170px à 150px */
+}
+
+.btn-imprimzer, .btn-zz, .btn-modifiezzr, .btn-supprimzer {
+  padding: 3px 6px;
+  border: none;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 25px; /* ⬅️ RÉDUIT: de 22px à 20px */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Largeurs spécifiques réduites */
+.btn-imprimzer { 
+ background-color: #17a2b8c7;
+  color: white !important;
+  border: 2px solid #148ea1;
+  min-width: 55px; /* ⬅️ RÉDUIT */
+  max-width: 55px;
+}
+
+.btn-zz { 
+  background-color: #17a2b8c7;
+  color: white !important;
+  border: 2px solid #148ea1;
+  min-width: 35px; /* ⬅️ RÉDUIT */
+  max-width: 35px;
+}
+
+.btn-modifiezzr { 
+  background-color: #5ebf6a;
+  color: white !important;
+  border: 2px solid #4ca458;
+  min-width: 55px; /* ⬅️ RÉDUIT */
+  max-width: 55px;
+}
+
+.btn-supprimzer { 
+ background-color: #e17c7c;
+  color: white !important;
+  border: 2px solid #cc6666;
+  min-width: 60px; /* ⬅️ RÉDUIT */
+  max-width: 60px;
+}
+
+/* Ajustement de la colonne Actions réduite */
+.historiquezz-table th:nth-child(9), 
+.historiquezz-table td:nth-child(9) { 
+  width: 145px !important; /* ⬅️ RÉDUIT À 140px */
+  min-width: 145px !important;
+  max-width: 145px !important;
+}
+
+/* Garantir l'alignement compact */
+.actions-historizque {
+  width: 100%;
+  min-width: 150px;
+  max-width: 160px;
+  margin: 0; /* Centre le groupe de boutons */
+}
+
+/* Pour les lignes avec seulement 2 boutons (payé) */
+.actions-historizque:has(button:nth-last-child(2)) {
+  justify-content: flex-start; /* Aligne à gauche pour 2 boutons */
+  gap: 12px; /* Un peu plus d'espace */
+}
+
+/* Effets hover */
+.btn-imprimzer:hover:not(:disabled) { background-color: #138496; }
+.btn-zz:hover:not(:disabled) { background-color: #138496; }
+.btn-modifiezzr:hover:not(:disabled) { background-color: #218838; }
+.btn-supprimzer:hover:not(:disabled) { background-color: #c82333; }
+
+/* États désactivés */
+.actions-historizque button:disabled {
+  background-color: #6c757d !important;
+  color: #f8f9fa !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+
+
+
+
+
+/* === MODAL DE SUPPRESSION - DESIGN AMÉLIORÉ === */
+.modal-overlay-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(21, 19, 19, 0.336);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+  animation: overlayFadeIn 0.2s ease-out;
+}
+
+.modal-content-delete {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 60px rgba(220, 53, 69, 0.15),
+    0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 440px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: hidden;
+  border: 1px solid rgba(220, 53, 69, 0.1);
+  animation: modalSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: center;
+}
+
+.modal-header-delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  
+  border-bottom: 1px solid rgba(220, 53, 69, 0.1);
+  position: relative;
+}
+
+.modal-header-delete::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+
+}
+
+.modal-header-delete h3 {
+  font-size: 18px;
+  color: #000000;
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-header-delete h3::before {
+  content: '⚠️';
+  font-size: 20px;
+}
+
+.close-btn-delete {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #a0a0a0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+.close-btn-delete:hover {
+  background-color: #e17c7c;
+  color: white !important;
+  border: 2px solid #cc6666;  background: rgba(220, 53, 69, 0.2);
+  
+  transform: scale(1.1);
+}
+
+.modal-body-delete {
+  padding: 24px;
+  text-align: center;
+}
+
+.warning-icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+  display: block;
+  animation: pulse 2s infinite;
+}
+
+.modal-body-delete > p {
+  margin: 0 0 16px 0;
+  color: #2d3748;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.delete-details {
+  background: rgba(254, 215, 215, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: left;
+  border: 1px solid rgba(220, 53, 69, 0.1);
+}
+
+.delete-details p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #4a5568;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-details strong {
+  color: #2d3748;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: left;
+}
+
+.delete-details span {
+  color: #718096;
+  text-align: right;
+  flex: 1;
+}
+
+.warning-text {
+  color: #000000 !important;
+  font-weight: 700;
+  font-size: 14px !important;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #e8e0e1;
+  margin: 20px 0 0 0 !important;
+  text-align: center;
+}
+
+.modal-footer-delete {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 20px 24px;
+  background: #f8f9fa;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn-cancel-delete {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
+}
+
+.btn-cancel-delete:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+.btn-confirm-delete {
+    background-color: #e17c7c;
+  color: white !important;
+  border: 2px solid #cc6666;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-confirm-delete::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-confirm-delete:hover::before {
+  left: 100%;
+}
+
+.btn-confirm-delete:hover {
+  background: linear-gradient(135deg, #c53030 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.btn-confirm-delete:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* Animations */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .modal-content-delete {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px;
+  }
+  
+  .modal-footer-delete {
+    flex-direction: column-reverse;
+  }
+  
+  .btn-cancel-delete,
+  .btn-confirm-delete {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .delete-details p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .delete-details span {
+    text-align: left;
+  }
+}
+
+/* Effet de focus pour l'accessibilité */
+.btn-cancel-delete:focus,
+.btn-confirm-delete:focus,
+.close-btn-delete:focus {
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === MODAL MVOLA - STYLE COORDONNÉ === */
+.modal-ovecsrlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.modal-contcsent {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  width: 600px;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: hidden;
+  border: 2px solid #FFD600;
+}
+
+.modal-hecsader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, #FFD600, #2a4f38);
+  color: white;
+}
+
+.modal-hecsader h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.close-cs {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.close-cs:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.modal-bocsdy {
+  padding: 0;
+  background: #fff;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Adaptation pour le contenu PaiementMvola dans le modal */
+.modal-bocsdy .paiement-mvola-contacciner {
+  margin-left: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 25px;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
+  min-height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-contcsent {
+    width: 95%;
+    border-radius: 15px;
+  }
+  
+  .modal-hecsader {
+    padding: 15px 20px;
+  }
+  
+  .modal-hecsader h3 {
+    font-size: 18px;
+  }
+  
+  .modal-bocsdy .paiement-mvola-contacciner {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-ovecsrlay {
+    padding: 10px;
+  }
+  
+  .modal-contcsent {
+    width: 100%;
+    border-radius: 12px;
+  }
+  
+  .modal-hecsader {
+    padding: 12px 15px;
+  }
+  
+  .modal-hecsader h3 {
+    font-size: 16px;
+  }
+  
+  .close-cs {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+  
+  .modal-bocsdy .paiement-mvola-contacciner {
+    padding: 15px;
+  }
+}

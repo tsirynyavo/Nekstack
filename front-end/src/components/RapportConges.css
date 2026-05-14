@@ -1,0 +1,514 @@
+/* === RAPPORT CONGÉS - STYLE COMPACT === */
+
+.rapsport-conges-container {
+  margin-left: 210px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+/* Header compact */
+.rapsport-header {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.hseader-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.retour-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.rapsport-header h1 {
+  font-size: 22px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Section recherche */
+.ssearch-period {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.dsate-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex: 1;
+}
+
+.isnput-group, .inpudt-group, .inpdut-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.isnput-group label, .inpudt-group label, .inpdut-group label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.isnput-group input, .inpudt-group input, .inpdut-group select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 11px;
+  min-width: 140px;
+}
+
+.actidon-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gednerate-btn, .expdort-btn, .resedt-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gednerate-btn {
+    background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.expdort-btn {
+  background: #4f935f;
+  color: white;
+}
+
+.resedt-btn {
+  background: #6c757d;
+  color: white;
+}
+
+/* Indicateur statistiques */
+.stadts-indicator {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.baddge-actif {
+  background: #e7f3ff;
+  color: #0066cc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Contenu du rapport */
+.rapdport-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+}
+
+.rappdort-period {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.rappdort-period h2 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.okd-badge {
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Tableau principal */
+.tablde-container {
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.condges-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #dee2e6;
+}
+
+.condges-table th {
+  background: #f8f9fa;
+  padding: 8px 6px;
+  text-align: center;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+.condges-table th:last-child {
+  border-right: none;
+}
+
+.condges-table td {
+  padding: 6px 5px;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.condges-table td:last-child {
+  border-right: none;
+}
+
+.condges-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.condges-table tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Colonnes spécifiques */
+.emplodye-header, .emsploye-name {
+  min-width: 120px;
+  text-align: left;
+}
+
+.emsploye-name strong {
+  font-size: 11px;
+  color: #2c3e50;
+}
+
+.statd-header, .stdat-header, .stadt-header, .statd-dheader, .detaidls-header {
+  min-width: 60px;
+}
+
+.sstat-value {
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.sstat-value.en-attente { color: #ffc107; }
+.sstat-value.refuse { color: #dc3545; }
+.sstat-value.accepte { color: #28a745; }
+.sstat-value.supprime { color: #6c757d; }
+.sstat-value.total { color: #007bff; }
+
+.dsetails-cell {
+  text-align: center;
+  min-width: 80px;
+}
+
+.destails-btn {
+   background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.destails-btn.active {
+  background: #e81313fb;
+}
+
+/* Ligne de détails */
+.destails-row {
+  background: #f8f9fa !important;
+}
+
+.detsails-container {
+  padding: 0 !important;
+  border-top: 2px solid #007bffb6;
+}
+
+.detsails-content {
+  padding: 12px;
+}
+
+.detsails-content h4 {
+  font-size: 12px;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+/* Tableau des détails */
+.detsails-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.detsails-table th {
+  background: #e9ecef;
+  padding: 6px 4px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #dee2e6;
+}
+
+.detsails-table td {
+  padding: 5px 4px;
+  border: 1px solid #dee2e6;
+}
+
+.detaisl-periode {
+  min-width: 120px;
+  font-size: 9px;
+}
+
+.detsail-type, .detsail-statut {
+  min-width: 80px;
+}
+
+.typse-badge, .sstatut-badge {
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Badges type de congé */
+.typse-badge.annuel { background: #d4edda; color: #155724; }
+.typse-badge.maladie { background: #fff3cd; color: #856404; }
+.typse-badge.exceptionnel { background: #cce7ff; color: #004085; }
+.typse-badge.maternite { background: #f8d7da; color: #721c24; }
+
+/* Badges statut */
+.sstatut-badge.en_attente { background: #fff3cd; color: #856404; }
+.sstatut-badge.refuse { background: #f8d7da; color: #721c24; }
+.sstatut-badge.accepte { background: #d4edda; color: #155724; }
+.sstatut-badge.supprime { background: #e9ecef; color: #495057; }
+
+.destail-duree {
+  text-align: center;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.details-description {
+  min-width: 100px;
+  font-size: 9px;
+}
+
+/* Résumé détails */
+.destails-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  padding: 10px;
+  background: #e9ecef;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.ssummary-item, .susmmary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+/* Résumé global */
+.rapsport-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.susmmary-card, .summsary-card, .summarsy-card {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.susmmary-card h3, .summsary-card h3, .summarsy-card h3 {
+  font-size: 10px;
+  color: #6c757d;
+  margin: 0 0 5px 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.totsal-demandes, .demansdes-acceptees, .tausx-acceptation {
+  font-size: 14px;
+  color: #007bffb6;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Pagination */
+.paginadtion-info-top {
+  background: #f8f9fa;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.paginatsion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.paginastion-btn, .pasgination-btn {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  background: white;
+  color: #007bff;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.paginastion-btn:hover:not(:disabled), .pasgination-btn:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+}
+
+.paginastion-btn:disabled, .pasgination-btn:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.pagisnation-info {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 12px;
+}
+
+/* Message aucune donnée */
+.nos-data {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 14px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .rapsport-conges-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ssearch-period {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .dsate-inputs {
+    flex-direction: column;
+  }
+  
+  .actidon-buttons {
+    justify-content: center;
+  }
+  
+  .rappdort-period {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .destails-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .rapsport-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .paginatsion {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hseader-top {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .condges-table {
+    font-size: 10px;
+  }
+  
+  .detsails-table {
+    font-size: 9px;
+  }
+}

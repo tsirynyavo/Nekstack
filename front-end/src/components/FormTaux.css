@@ -1,0 +1,207 @@
+/* === FORMULAIRE TAUX SIMPLE === */
+.studccent-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.studccent-form h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Champs input */
+.icsqnputBox,
+.inpcsutBox,
+.inputsqBox,
+.inpuqctBox {
+  margin-bottom: 20px;
+}
+
+.icsqnputBox input,
+.inpcsutBox input,
+.inputsqBox input,
+.inpuqctBox input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.icsqnputBox input:focus,
+.inpcsutBox input:focus,
+.inputsqBox input:focus,
+.inpuqctBox input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.icsqnputBox span,
+.inpcsutBox span,
+.inputsqBox span,
+.inpuqctBox span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Boutons */
+.buccttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btqsn-glow {
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btqsn-glow:hover {
+  background: #0056b3;
+}
+
+.bqstn-cancel {
+  padding: 12px 24px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.bqstn-cancel:hover {
+  background: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .studccent-form {
+    margin: 15px;
+    padding: 15px;
+  }
+  
+  .buccttons {
+    flex-direction: column;
+  }
+  
+  .btqsn-glow,
+  .bqstn-cancel {
+    width: 100%;
+  }
+}
+/* === MODAL DE CONFIRMATION - TT === */
+.presencex-modal-backdrop-tt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.presencex-modal-tt {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.presencex-modal-tt h3 {
+  font-size: 14px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.presencex-modal-tt p {
+  font-size: 11px;
+  color: #495057;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.presencex-modal-tt strong {
+  color: #007bff;
+}
+
+/* Boutons du modal */
+.presencex-form-buttons-tt {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.btn-confirm-modal-tt {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  transition: background 0.3s ease;
+}
+
+.btn-confirm-modal-tt:hover {
+  background: #218838;
+}
+
+.btn-cancel-modal-tt {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  transition: background 0.3s ease;
+}
+
+.btn-cancel-modal-tt:hover {
+  background: #5a6268;
+}
+
+/* Responsive pour modal */
+@media (max-width: 768px) {
+  .presencex-modal-tt {
+    min-width: 250px;
+    margin: 20px;
+  }
+  
+  .presencex-form-buttons-tt {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

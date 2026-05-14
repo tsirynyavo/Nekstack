@@ -1,0 +1,315 @@
+/* === CONTAINER PRINCIPAL === */
+.xxpaiement-employe-container {
+  margin-left: -30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === HEADER === */
+.xxpaiement-header {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  text-align: center;
+  border-left: 5px solid #667eea;
+}
+
+.xxpaiement-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.xxpaiement-subtitle {
+  font-size: 16px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* === MESSAGE D'ERREUR === */
+.xxerror-message {
+  background: #fee;
+  color: #c53030;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #fed7d7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.xxerror-message button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #c53030;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.xxerror-message button:hover {
+  background: #fed7d7;
+}
+
+/* === DERNIER PAIEMENT DÉTAILLÉ === */
+.xxdernier-paiement-details {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  border-top: 4px solid #28a745;
+}
+
+.xxdernier-paiement-details h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.xxdetails-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.xxdetail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+}
+
+.xxdetail-item strong {
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.xxdetail-item span {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.salaire-net {
+  color: #28a745 !important;
+  font-weight: 700 !important;
+}
+
+/* === HISTORIQUE DES PAIEMENTS === */
+.xxhistorique-paiements {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.xxhistorique-paiements h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.xxno-paiements {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-style: italic;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* === LISTE DES PAIEMENTS - COMPACTE === */
+.xxpaiements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.xxpaiement-item {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #dee2e6;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.xxpaiement-item:hover {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.xxpaiement-item.dernier-paiement {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+  border-left-color: #28a745;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.15);
+}
+
+.xxpaiement-header-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.xxpaiement-mois {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.xxpaiement-statut {
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.statut-validé {
+  background: #d4edda;
+  color: #155724;
+}
+
+.statut-payé {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+/* === DÉTAILS COMPACTS === */
+.xxpaiement-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  font-size: 13px;
+}
+
+.xxpaiement-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.xxpaiement-info:last-child {
+  border-bottom: none;
+}
+
+.xxlabel {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.xxpaiement-info .value {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* === BADGE DERNIER === */
+.xxbadge-dernier {
+  position: absolute;
+  top: 10px;
+  right: -25px;
+  background: #28a745;
+  color: white;
+  padding: 3px 25px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+  .xxpaiement-employe-container {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xxpaiement-header {
+    padding: 20px;
+  }
+  
+  .xxpaiement-header h2 {
+    font-size: 22px;
+  }
+  
+  .xxdetails-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .xxpaiement-header-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .xxpaiement-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .xxpaiement-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .xxdetail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .xxpaiement-employe-container {
+    padding: 10px;
+  }
+  
+  .xxdernier-paiement-details,
+  .xxhistorique-paiements {
+    padding: 20px;
+  }
+  
+  .xxpaiement-item {
+    padding: 12px;
+  }
+  
+  .xxbadge-dernier {
+    right: -20px;
+    padding: 2px 20px;
+    font-size: 8px;
+  }
+}

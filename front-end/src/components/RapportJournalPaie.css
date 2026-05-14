@@ -1,0 +1,395 @@
+/* === RAPPORT JOURNAL DE PAIE - STYLE COMPACT === */
+
+.rszapport-container {
+  margin-left: 210px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+/* Header compact */
+.rzapport-header {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.hzeader-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 8px;
+}
+
+.retour-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.rzapport-header h1 {
+  font-size: 22px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 600;
+}
+
+.rappzort-subtitle {
+  font-size: 11px;
+  color: #6c757d;
+  margin: 0 0 15px 0;
+  font-style: italic;
+}
+
+/* Conteneur filtres */
+.filzters-container {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+}
+
+.fizlters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 8px;
+}
+
+.fzilter-group, .filzter-group, .filtezr-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fzilter-group label, .filzter-group label, .filtezr-group label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #2c3e50;
+  text-transform: uppercase;
+}
+
+.seazrch-input, .seleczt-input, .datze-input {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 11px;
+  min-width: 140px;
+}
+
+.filzter-actions {
+  display: flex;
+  gap: 6px;
+  align-items: end;
+}
+
+.btnz-filter, .btnz-reset, .btzn-export {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.btnz-filter {
+  background: #007bffb6;
+  color: white;
+}
+
+.btnz-reset {
+  background: #6c757d;
+  color: white;
+}
+
+.btzn-export {
+  background: #28a745;
+  color: white;
+}
+
+.btzn-export:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Résumé filtres */
+.fizlter-summary {
+  font-size: 10px;
+  color: #6c757d;
+  padding: 6px 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  border-left: 3px solid #007bffb6;
+}
+
+/* Message erreur */
+.errorz-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 3px solid #dc3545;
+}
+
+.errorz-message button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #721c24;
+}
+
+/* En-tête résultats */
+.resultzs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.resulzts-count {
+  font-size: 11px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.resulzts-count strong {
+  color: #28a745;
+}
+
+.paginaztion-info-top {
+  font-size: 10px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Tableau principal */
+.tablze-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.lzoading-table {
+  padding: 20px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.razpport-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.razpport-table th {
+  background: #f8f9fa;
+  padding: 8px 6px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+.razpport-table th:last-child {
+  border-right: none;
+}
+
+.razpport-table td {
+  padding: 6px 5px;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+.razpport-table td:last-child {
+  border-right: none;
+}
+
+.razpport-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.razpport-table tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Colonnes spécifiques */
+.nzom-cell {
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.maztricule-cell {
+  min-width: 80px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #6c757d;
+}
+
+.depzartement-cell {
+  min-width: 100px;
+}
+
+.datez-cell, .moisz-cell {
+  min-width: 90px;
+  font-size: 10px;
+}
+
+.netz-cell {
+  min-width: 100px;
+  text-align: right;
+  font-weight: 600;
+  color: #28a745;
+}
+
+/* Message aucune donnée */
+.nzo-data {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-size: 11px;
+  font-style: italic;
+  background: #f8f9fa;
+}
+
+/* Pagination simple */
+.pagiznation-simple {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.paginaztion-btn, .paginatizon-btn {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  background: white;
+  color: #007bff;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.paginaztion-btn:hover:not(:disabled), .paginatizon-btn:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+}
+
+.paginaztion-btn:disabled, .paginatizon-btn:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.pagzination-info {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 11px;
+}
+
+/* Pied de page */
+.rapzport-footer {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.inzfo-generale {
+  font-size: 10px;
+  color: #6c757d;
+}
+
+.inzfo-generale strong {
+  color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .rszapport-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fizlters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filzter-actions {
+    justify-content: center;
+  }
+  
+  .resultzs-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .pagiznation-simple {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .razpport-table {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hzeader-top {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .seazrch-input, .seleczt-input, .datze-input {
+    min-width: 100%;
+  }
+  
+  .btnz-filter, .btnz-reset, .btzn-export {
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+}

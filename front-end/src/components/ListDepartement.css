@@ -1,0 +1,283 @@
+/* === LISTE DES DÉPARTEMENTS - STYLE COMPACT === */
+.studsents-list-header {
+  max-width: 900px;
+  margin: 15px auto;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 12px;
+}
+
+.studsents-list-header h2 {
+  font-size: 16px;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Barre de recherche */
+.seadrch-box {
+  margin-bottom: 15px;
+}
+
+.seadrch-box input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 11px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.seadrch-box input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Bouton d'ajout */
+.btssn {
+  position: relative;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-add {
+    background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.btn-add:hover {
+    background: #144b9f !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.btn-add .isnner {
+  position: absolute;
+  background: rgba(255,255,255,0.3);
+  height: 100%;
+  width: 50px;
+  left: -70px;
+  top: 0;
+  transform: skewX(-20deg);
+  transition: all 0.4s ease;
+}
+
+.btn-add:hover .isnner {
+  left: calc(100% + 70px);
+}
+
+/* Tableau */
+.studsents-list-header table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 11px;
+}
+
+.studsents-list-header thead {
+  background: #f8f9fa;
+}
+
+.studsents-list-header th {
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 11px;
+}
+
+.studsents-list-header td {
+  padding: 8px;
+  border-bottom: 1px solid #dee2e6;
+  color: #495057;
+}
+
+.studsents-list-header tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* Boutons d'action */
+.ssbtn, .btsn {
+  position: relative;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  margin-bottom: 4px;
+}
+
+.btn-modify {
+  background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+}
+
+.btn-modify:hover {
+  background: #1c8b14;
+}
+
+.btn-delete {
+  background: rgb(170, 84, 92) !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #812c24 !important;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+}
+
+.ssbtn .innsser, .btsn .innesr {
+  position: absolute;
+  background: rgba(255,255,255,0.3);
+  height: 100%;
+  width: 30px;
+  left: -40px;
+  top: 0;
+  transform: skewX(-20deg);
+  transition: all 0.4s ease;
+}
+
+.ssbtn:hover .innsser, .btsn:hover .innesr {
+  left: calc(100% + 40px);
+}
+
+/* === MODAL DE SUPPRESSION === */
+.presencex-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.presencex-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.presencex-modal h3 {
+  font-size: 14px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.presencex-modal p {
+  font-size: 11px;
+  color: #495057;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.presencex-modal strong {
+  color: #dc3545;
+}
+
+/* Boutons du modal */
+.presencex-form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.btn-delete-modal {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  transition: background 0.3s ease;
+}
+
+.btn-delete-modal:hover {
+  background: #c82333;
+}
+
+.btn-cancel-modal {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 80px;
+  transition: background 0.3s ease;
+}
+
+.btn-cancel-modal:hover {
+  background: #5a6268;
+}
+
+/* États vides */
+.studsents-list-header tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .studsents-list-header {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .studsents-list-header table {
+    font-size: 10px;
+  }
+  
+  .ssbtn, .btsn {
+    padding: 4px 8px;
+    font-size: 9px;
+    margin-right: 4px;
+  }
+  
+  .presencex-modal {
+    min-width: 250px;
+    margin: 20px;
+  }
+  
+  .presencex-form-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

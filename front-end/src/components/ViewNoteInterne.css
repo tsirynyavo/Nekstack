@@ -1,0 +1,370 @@
+/* === PAGE VISUALISATION NOTE - STYLE COMPACT === */
+
+.vsiew-note-container {
+  padding: 15px;
+  margin-left: 205px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+/* Header compact */
+.notse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.hesader-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hesader-left h1 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600;
+}
+
+.heacqsder-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Boutons compacts */
+.btssn, .bsstn, .btsn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btssn.btn-back {
+    background: #686968 !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #6e726f !important;
+}
+
+.bsstn.btn-edit {
+   background: #78c98f !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #63b57a !important;
+}
+
+.bsstn.btn-delete {
+  background: rgb(148, 77, 85) !important;        /* Vert pastel */
+  color: white !important;
+ 
+}
+
+/* Métadonnées compactes */
+.notsse-metadata {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.metsadata-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.metsadata-item:last-child {
+  border-bottom: none;
+}
+
+.metadasta-icon, .mestadata-icon, .metssadata-icon {
+  font-size: 14px;
+  color: #007bffb6;
+  margin-top: 2px;
+  min-width: 16px;
+}
+
+.metadatsa-content {
+  flex: 1;
+}
+
+.metasdata-label, .metadsata-label, .metsadata-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.metasdata-value, .metadasta-value {
+  font-size: 11px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Badges de visibilité */
+.vissibility-badge, .visisbility-badge {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.visibility-all {
+  background: #d4edda;
+  color: #155724;
+}
+
+.visibility-targeted {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Liste départements */
+.departsements-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.deparstement-tag {
+  background: #e9ecef;
+  color: #495057;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+/* Contenu de la note */
+.noste-content-section {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.noste-content-section h2 {
+  font-size: 13px;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.noste-content {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #2c3e50;
+}
+
+.noste-content p {
+  margin: 0 0 8px 0;
+}
+
+.noste-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pied de page */
+.notse-footer {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 12px 15px;
+}
+
+.crseation-info {
+  font-size: 10px;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* Modal de suppression compact */
+.mssodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mosdal.delete-modal {
+  background: white;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.mosdal-header {
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.mosdal-header h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.warning-icon {
+  font-size: 14px;
+  color: #dc3545;
+}
+
+.modassl-body {
+  padding: 15px;
+  font-size: 11px;
+}
+
+.modassl-body p {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.notsse-preview {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.presview-item {
+  margin-bottom: 5px;
+  font-size: 11px;
+  color: #2c3e50;
+}
+
+.presview-item strong {
+  color: #2c3e50;
+}
+
+.warnssing-message {
+  background: #fff5f5;
+  color: #dc3545;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #f8d7da;
+  font-weight: 500;
+  text-align: center;
+  font-size: 10px;
+}
+
+.mosdal-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 12px 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.btsn.btn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.btsn.btn-confirm-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.loadsing-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 6px;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive compact */
+@media (max-width: 1200px) {
+  .vsiew-note-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notse-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  
+  .hesader-left {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .heacqsder-actions {
+    justify-content: center;
+  }
+  
+  .metsadata-item {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .mosdal-footer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .notsse-metadata,
+  .noste-content-section,
+  .notse-footer {
+    padding: 10px;
+  }
+  
+  .hesader-left h1 {
+    font-size: 16px;
+  }
+  
+  .btssn, .bsstn, .btsn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  .departsements-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
