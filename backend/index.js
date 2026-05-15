@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('./db/config'); // ta connexion
 const Citoyen = require('./db/Citoyen');
+const Reservation = require('./db/Reservation');
+const { v4: uuidv4 } = require('uuid'); 
 
 const Aide = require('./db/Aide');
 require('dotenv').config();
@@ -11,11 +13,12 @@ const Tache = require('./db/Tache');
 const cors = require("cors");
 const Quartier = require('./db/Quartier'); // chemin vers ton modèle Departement
 const Historique = require("./db/Historique"); // chemin vers ton fichier Historique.js
-const Taux = require('./db/Taux'); // Ajout du modèle Taux
+
+const Marche = require('./db/Marche');
 
 const bcrypt = require('bcrypt');
 const cron = require('node-cron');
-const Presence = require('./db/Presence');     
+    
 const Paiement = require('./db/Paiement');
 // === ROUTES MVOLA === //
 const NoteInterne = require('./db/NoteInterne');
@@ -940,6 +943,180 @@ app.delete("/aides/:id", async (req, res) => {
 
 
 
+// GET : Statistiques globales du système
+app.get("/statistiques/globales", async (req, res) => {
+  try {
+    // Comptages de base
+    const totalCitoyens = await Citoyen.countDocuments();
+    const citoyensActifs = await Citoyen.countDocuments({ statut: 'actif' });
+    const totalQuartiers = await Quartier.countDocuments();
+    const totalRessources = await Ressource.countDocuments();
+    const ressourcesActives = await Ressource.countDocuments({ statut: 'active' });
+    const totalMarches = await Marche.countDocuments();
+    const totalReservations = await Reservation.countDocuments();
+    const reservationsConfirmees = await Reservation.countDocuments({ statut: 'confirmée' });
+    const totalAides = await Aide.countDocuments();
+    const aidesDistribuees = await Aide.countDocuments({ statut: 'distribuée' });
+    const totalPaiements = await Paiement.countDocuments();
+    const paiementsPayes = await Paiement.countDocuments({ statut: 'payé' });
+ 
+    // Statistiques par quartier
+    const citoyensParQuartier = await Citoyen.aggregate([
+      { $group: { _id: "$id_quartier", count: { $sum: 1 } } },
+      { $lookup: { from: "quartiers", localField: "_id", foreignField: "_id", as: "quartier" } },
+      { $unwind: "$quartier" },
+      { $project: { nom: "$quartier.nom", count: 1 } }
+    ]);
+ 
+    const ressourcesParQuartier = await Ressource.aggregate([
+      { $group: { _id: "$id_quartier", count: { $sum: 1 } } },
+      { $lookup: { from: "quartiers", localField: "_id", foreignField: "_id", as: "quartier" } },
+      { $unwind: "$quartier" },
+      { $project: { nom: "$quartier.nom", count: 1 } }
+    ]);
+ 
+    // Aides par statut
+    const aidesParStatut = await Aide.aggregate([
+      { $group: { _id: "$statut", count: { $sum: 1 } } }
+    ]);
+ 
+    // Réservations par statut
+    const reservationsParStatut = await Reservation.aggregate([
+      { $group: { _id: "$statut", count: { $sum: 1 } } }
+    ]);
+ 
+    // Ressources par type
+    const ressourcesParType = await Ressource.aggregate([
+      { $group: { _id: "$typeres", count: { $sum: 1 }, quantiteTotal: { $sum: "$quantiteactuelle" } } }
+    ]);
+ 
+    // Paiements par statut
+    const paiementsParStatut = await Paiement.aggregate([
+      { $group: { _id: "$statut", count: { $sum: 1 } } }
+    ]);
+ 
+    // Total des montants de paiements
+    const montantsPaiements = await Paiement.aggregate([
+      { $match: { statut: 'payé' } },
+      { $group: { _id: null, totalBrut: { $sum: "$salaireBrut" }, totalNet: { $sum: "$salaireNet" } } }
+    ]);
+ 
+    // Places de marché
+    const marches = await Marche.find().lean();
+    let totalPlacesMarche = 0;
+    let placesDisponibles = 0;
+    marches.forEach(m => {
+      m.lieux.forEach(l => {
+        totalPlacesMarche += l.placesDispo;
+        placesDisponibles += l.placesDispo;
+      });
+    });
+ 
+    // Calcul des places occupées
+    const reservationsActives = await Reservation.find({ statut: 'confirmée' }).lean();
+    let placesOccupees = 0;
+    reservationsActives.forEach(r => placesOccupees += r.quantite);
+    placesDisponibles -= placesOccupees;
+ 
+    res.json({
+      citoyens: {
+        total: totalCitoyens,
+        actifs: citoyensActifs,
+        inactifs: totalCitoyens - citoyensActifs,
+        parQuartier: citoyensParQuartier
+      },
+      quartiers: {
+        total: totalQuartiers
+      },
+      ressources: {
+        total: totalRessources,
+        actives: ressourcesActives,
+        inactives: totalRessources - ressourcesActives,
+        parType: ressourcesParType,
+        parQuartier: ressourcesParQuartier
+      },
+      aides: {
+        total: totalAides,
+        distribuees: aidesDistribuees,
+        parStatut: aidesParStatut
+      },
+      marches: {
+        total: totalMarches,
+        totalPlaces: totalPlacesMarche,
+        placesDisponibles: placesDisponibles,
+        placesOccupees: placesOccupees
+      },
+      reservations: {
+        total: totalReservations,
+        confirmees: reservationsConfirmees,
+        parStatut: reservationsParStatut
+      },
+      paiements: {
+        total: totalPaiements,
+        payes: paiementsPayes,
+        parStatut: paiementsParStatut,
+        montants: montantsPaiements.length > 0 ? montantsPaiements[0] : { totalBrut: 0, totalNet: 0 }
+      }
+    });
+  } catch (err) {
+    console.error("Erreur statistiques globales:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+ 
+// GET : Statistiques d'activité récente (30 derniers jours)
+app.get("/statistiques/activite-recente", async (req, res) => {
+  try {
+    const dateDebut = new Date();
+    dateDebut.setDate(dateDebut.getDate() - 30);
+ 
+    const nouveauxCitoyens = await Citoyen.countDocuments({ 
+      datedesauvergarde: { $gte: dateDebut } 
+    });
+ 
+    const nouvellesAides = await Aide.countDocuments({ 
+      createdAt: { $gte: dateDebut } 
+    });
+ 
+    const nouvellesReservations = await Reservation.countDocuments({ 
+      createdAt: { $gte: dateDebut } 
+    });
+ 
+    const aidesParJour = await Aide.aggregate([
+      { $match: { createdAt: { $gte: dateDebut } } },
+      { $group: { 
+        _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+        count: { $sum: 1 }
+      }},
+      { $sort: { _id: 1 } }
+    ]);
+ 
+    const reservationsParJour = await Reservation.aggregate([
+      { $match: { createdAt: { $gte: dateDebut } } },
+      { $group: { 
+        _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+        count: { $sum: 1 }
+      }},
+      { $sort: { _id: 1 } }
+    ]);
+ 
+    res.json({
+      periode: "30 derniers jours",
+      nouveauxCitoyens,
+      nouvellesAides,
+      nouvellesReservations,
+      aidesParJour,
+      reservationsParJour
+    });
+  } catch (err) {
+    console.error("Erreur activité récente:", err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
+
+
+
 
 
 
@@ -1083,6 +1260,7 @@ app.post("/citoyens", async (req, res) => {
       nom,
       cin,
       email,
+           telephone,  
       etat,
       id_quartier,
       motdepasse,
@@ -1118,6 +1296,7 @@ app.post("/citoyens", async (req, res) => {
       nom,
       cin,
       email,
+      telephone: telephone || "", 
       etat: etat || 'Célibataire',
       id_quartier,
       motdepasse: hashedPassword,
@@ -1157,6 +1336,7 @@ app.put("/citoyens/:id", async (req, res) => {
       nom,
       cin,
       email,
+        telephone,  
       etat,
       id_quartier,
       motdepasse,
@@ -1172,6 +1352,7 @@ app.put("/citoyens/:id", async (req, res) => {
     if (nom) citoyen.nom = nom;
     if (cin) citoyen.cin = cin;
     if (email) citoyen.email = email;
+     if (telephone !== undefined) citoyen.telephone = telephone; 
     if (etat) citoyen.etat = etat;
     if (id_quartier) {
       const quartierDoc = await Quartier.findById(id_quartier);
@@ -1287,6 +1468,423 @@ app.put("/citoyens/:id/reset-password", async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// ========== MARCHÉS ==========
+
+// GET : liste paginée, filtrable, triable
+app.get("/marches", async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+    const sortField = req.query.sortField || "nom";
+    const sortOrder = req.query.sortOrder === "desc" ? -1 : 1;
+
+    let filter = {};
+    if (search) {
+      filter.nom = { $regex: search, $options: "i" };
+    }
+
+    const total = await Marche.countDocuments(filter);
+    const marches = await Marche.find(filter)
+      .sort({ [sortField]: sortOrder })
+      .limit(limit)
+      .skip((page - 1) * limit)
+      .lean();
+
+    res.json({
+      total,
+      page,
+      pages: Math.ceil(total / limit),
+      marches
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
+// GET : export de tous les marchés pour Excel
+app.get("/marches/export", async (req, res) => {
+  try {
+    const marches = await Marche.find().lean();
+    const flat = [];
+    marches.forEach(m => {
+      m.lieux.forEach(l => {
+        flat.push({
+          Marché: m.nom,
+          Lieu: `Lieu ${l.numero}`,
+          "Places disponibles": l.placesDispo
+        });
+      });
+    });
+    res.json(flat);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET : un marché par ID
+app.get("/marches/:id", async (req, res) => {
+  try {
+    const marche = await Marche.findById(req.params.id);
+    if (!marche) return res.status(404).json({ error: "Marché non trouvé." });
+    res.json(marche);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// POST : créer un marché (avec ses 5 lieux + photo optionnelle)
+app.post("/marches", upload.single("photo"), async (req, res) => {
+  try {
+    // Si les lieux sont envoyés en JSON stringifié (car il y a un fichier), on parse
+    let lieux = req.body.lieux;
+    if (typeof lieux === 'string') {
+      lieux = JSON.parse(lieux);
+    }
+
+    const { nom } = req.body;
+
+    if (!nom || !lieux || !Array.isArray(lieux) || lieux.length !== 5) {
+      return res.status(400).json({ error: "Nom requis et exactement 5 lieux." });
+    }
+
+    // Vérifier les places et forcer les numéros
+    for (let i = 0; i < 5; i++) {
+      if (lieux[i].placesDispo === undefined || lieux[i].placesDispo === null) {
+        return res.status(400).json({ error: "Chaque lieu doit avoir un nombre de places disponibles." });
+      }
+      lieux[i].numero = i + 1;
+    }
+
+    const exist = await Marche.findOne({ nom: nom.trim() });
+    if (exist) return res.status(400).json({ error: "Un marché avec ce nom existe déjà." });
+
+    const newMarche = new Marche({
+      nom: nom.trim(),
+      lieux,
+      photo: req.file ? req.file.path : null,   // enregistre le chemin de l'image
+    });
+
+    const saved = await newMarche.save();
+    res.status(201).json(saved);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PUT : modifier un marché (avec nouvelle photo possible)
+app.put("/marches/:id", upload.single("photo"), async (req, res) => {
+  try {
+    const marche = await Marche.findById(req.params.id);
+    if (!marche) return res.status(404).json({ error: "Marché non trouvé." });
+
+    // Gestion des lieux (stringifié si FormData)
+    let lieux = req.body.lieux;
+    if (typeof lieux === 'string') {
+      lieux = JSON.parse(lieux);
+    }
+
+    const { nom } = req.body;
+    if (nom) marche.nom = nom.trim();
+
+    if (lieux) {
+      if (!Array.isArray(lieux) || lieux.length !== 5) {
+        return res.status(400).json({ error: "Exactement 5 lieux requis." });
+      }
+      for (let i = 0; i < 5; i++) {
+        if (lieux[i].placesDispo === undefined) {
+          return res.status(400).json({ error: `Places disponibles manquantes pour le lieu ${i+1}.` });
+        }
+        marche.lieux[i].placesDispo = lieux[i].placesDispo;
+        marche.lieux[i].numero = i + 1;
+      }
+    }
+
+    // Mise à jour de la photo si un nouveau fichier est fourni
+    if (req.file) {
+      marche.photo = req.file.path;
+    }
+
+    const updated = await marche.save();
+    res.json(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+// DELETE : supprimer un marché
+app.delete("/marches/:id", async (req, res) => {
+  try {
+    const deleted = await Marche.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: "Marché non trouvé." });
+    res.json({ message: "Marché supprimé avec succès." });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET : statistiques rapides
+app.get("/marches/stats", async (req, res) => {
+  try {
+    const totalMarches = await Marche.countDocuments();
+    const marches = await Marche.find().lean();
+    let totalPlaces = 0;
+    marches.forEach(m => m.lieux.forEach(l => totalPlaces += l.placesDispo));
+    res.json({
+      totalMarches,
+      totalPlaces,
+      marchesDetail: marches.map(m => ({
+        nom: m.nom,
+        placesParLieu: m.lieux.map(l => l.placesDispo)
+      }))
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ========== RÉSERVATIONS ==========
+// ========== RÉSERVATIONS ==========
+
+// GET : liste paginée, filtrable
+app.get("/reservations", async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+    const statut = req.query.statut || "";
+    const marcheId = req.query.marche || "";
+    const dateDebut = req.query.dateDebut ? new Date(req.query.dateDebut) : null;
+    const dateFin = req.query.dateFin ? new Date(req.query.dateFin) : null;
+    const sortField = req.query.sortField || "date";
+    const sortOrder = req.query.sortOrder === "desc" ? -1 : 1;
+
+    let filter = {};
+
+    if (search) {
+      const marches = await Marche.find({ nom: { $regex: search, $options: "i" } }).select("_id");
+      filter.marche = { $in: marches.map(m => m._id) };
+    }
+    if (statut) filter.statut = statut;
+    if (marcheId) filter.marche = marcheId;
+    if (dateDebut || dateFin) {
+      filter.date = {};
+      if (dateDebut) filter.date.$gte = dateDebut;
+      if (dateFin) filter.date.$lte = dateFin;
+    }
+
+    const total = await Reservation.countDocuments(filter);
+    const reservations = await Reservation.find(filter)
+      .populate("marche", "nom photo lieux")
+      .populate("beneficiaire", "prenom nom telephone matricule")
+      .sort({ [sortField]: sortOrder })
+      .limit(limit)
+      .skip((page - 1) * limit)
+      .lean();
+
+    res.json({ total, page, pages: Math.ceil(total / limit), reservations });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET : une réservation par ID
+app.get("/reservations/:id", async (req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.id)
+      .populate("marche", "nom photo lieux")
+      .populate("beneficiaire", "prenom nom telephone matricule");
+    if (!reservation) return res.status(404).json({ error: "Réservation non trouvée." });
+    res.json(reservation);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// POST : créer une réservation (admin)
+app.post("/reservations", async (req, res) => {
+  try {
+    const { marche, lieu, date, quantite, beneficiaire, statut, description } = req.body;
+
+    if (!marche || !lieu || !date) {
+      return res.status(400).json({ error: "Marché, lieu et date sont requis." });
+    }
+
+    const marcheDoc = await Marche.findById(marche);
+    if (!marcheDoc) return res.status(404).json({ error: "Marché non trouvé." });
+    if (lieu < 1 || lieu > 5) return res.status(400).json({ error: "Lieu invalide (1-5)." });
+
+    // Vérifier les places disponibles (réservations déjà confirmées pour ce marché/lieu/date)
+    const reservationsExistantes = await Reservation.find({
+      marche,
+      lieu: Number(lieu),
+      date: new Date(date),
+      statut: 'confirmée'
+    });
+    const placesOccupees = reservationsExistantes.reduce((sum, r) => sum + r.quantite, 0);
+    const lieuCible = marcheDoc.lieux.find(l => l.numero === Number(lieu));
+    if (!lieuCible) return res.status(400).json({ error: "Lieu non défini." });
+
+    const quantiteFinale = quantite || 1;
+    if (placesOccupees + quantiteFinale > lieuCible.placesDispo) {
+      return res.status(400).json({ error: `Plus assez de places. Restantes : ${lieuCible.placesDispo - placesOccupees}` });
+    }
+
+    const reservationStatut = statut || "en_attente";
+
+    const newReservation = new Reservation({
+      marche,
+      lieu: Number(lieu),
+      date,
+      quantite: quantiteFinale,
+      beneficiaire: beneficiaire || null,
+      statut: reservationStatut,
+      description
+    });
+
+    const saved = await newReservation.save();
+
+    // ✅ Si la réservation est créée directement avec le statut "confirmée", on décrémente les places
+    if (reservationStatut === "confirmée") {
+      lieuCible.placesDispo -= quantiteFinale;
+      await marcheDoc.save();
+    }
+
+    const populated = await Reservation.findById(saved._id)
+      .populate("marche", "nom photo lieux")
+      .populate("beneficiaire", "prenom nom telephone matricule");
+
+    res.status(201).json(populated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}); // PUT : modifier une réservation
+app.put("/reservations/:id", async (req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.id);
+    if (!reservation) return res.status(404).json({ error: "Réservation non trouvée." });
+
+    const { marche, lieu, date, quantite, beneficiaire, statut, description } = req.body;
+
+    // ⛔ Si la réservation est déjà confirmée, on bloque la modification du marché, du lieu ou de la quantité
+    if (reservation.statut === "confirmée") {
+      if ((marche && marche !== reservation.marche.toString()) ||
+          (lieu && Number(lieu) !== reservation.lieu) ||
+          (quantite !== undefined && Number(quantite) !== reservation.quantite)) {
+        return res.status(400).json({
+          error: "Impossible de modifier le marché, le lieu ou la quantité d'une réservation confirmée. Annulez-la d'abord."
+        });
+      }
+    }
+
+    // Appliquer les champs modifiables
+    if (marche) reservation.marche = marche;
+    if (lieu) reservation.lieu = Number(lieu);
+    if (date) reservation.date = date;
+    if (quantite !== undefined) reservation.quantite = Number(quantite);
+    if (beneficiaire !== undefined) {
+      if (beneficiaire) {
+        const citoyenDoc = await Citoyen.findById(beneficiaire);
+        if (!citoyenDoc) return res.status(404).json({ error: "Citoyen introuvable." });
+      }
+      reservation.beneficiaire = beneficiaire || null;
+    }
+    if (description !== undefined) reservation.description = description;
+
+    // 🔁 Gestion du changement de statut et impact sur les places du marché
+    const ancienStatut = reservation.statut;
+    if (statut && statut !== ancienStatut) {
+      // 1️⃣ Si on quitte le statut "confirmée", on restaure les places
+      if (ancienStatut === "confirmée") {
+        const marcheOld = await Marche.findById(reservation.marche);
+        const lieuOld = marcheOld.lieux.find(l => l.numero === reservation.lieu);
+        if (lieuOld) {
+          lieuOld.placesDispo += reservation.quantite;
+          await marcheOld.save();
+        }
+      }
+
+      // 2️⃣ On applique le nouveau statut
+      reservation.statut = statut;
+
+      // 3️⃣ Si on passe à "confirmée", on décrémente les places
+      if (statut === "confirmée") {
+        const marcheNew = await Marche.findById(reservation.marche);
+        const lieuNew = marcheNew.lieux.find(l => l.numero === reservation.lieu);
+        if (!lieuNew) return res.status(400).json({ error: "Lieu introuvable." });
+        if (lieuNew.placesDispo < reservation.quantite) {
+          return res.status(400).json({
+            error: `Plus assez de places disponibles. Restantes : ${lieuNew.placesDispo}`
+          });
+        }
+        lieuNew.placesDispo -= reservation.quantite;
+        await marcheNew.save();
+      }
+    }
+
+    const updated = await reservation.save();
+    const populated = await Reservation.findById(updated._id)
+      .populate("marche", "nom photo lieux")
+      .populate("beneficiaire", "prenom nom telephone matricule");
+
+    res.json(populated);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// DELETE
+app.delete("/reservations/:id", async (req, res) => {
+  try {
+    const deleted = await Reservation.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: "Réservation non trouvée." });
+    res.json({ message: "Réservation supprimée." });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 

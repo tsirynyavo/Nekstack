@@ -9,6 +9,7 @@ const citoyenSchema = new mongoose.Schema({
   nom: { type: String, required: true },
   cin: { type: Number, required: true, unique: true },
   email: { type: String, required: true, unique: true },
+  telephone: { type: String, default: "" },   // ← nouveau champ
   etat: {
     type: String,
     enum: ['Célibataire', 'Marié(e)', 'Divorcé(e)', 'Veuf/Veuve'],
