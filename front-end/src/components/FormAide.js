@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import "./FormConge.css"; // on conserve le même style
+import "./FormConge.css";
 
 const FormAide = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const location = useLocation();
 
-  // États provenant éventuellement d'un clic dans le calendrier (ListAide)
   const preselectedCitoyen = location.state?.selectedCitoyen || null;
   const preselectedDate = location.state?.selectedDate || null;
 
-  const [ressources, setRessources] = useState([]);
+  const [allRessources, setAllRessources] = useState([]);
+  const [ressourcesFiltrees, setRessourcesFiltrees] = useState([]);
   const [quartiers, setQuartiers] = useState([]);
   const [citoyens, setCitoyens] = useState([]);
   const [citoyensDuQuartier, setCitoyensDuQuartier] = useState([]);
@@ -30,7 +30,7 @@ const FormAide = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Chargement des listes pour les selects
+  // Chargement initial des données
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -40,7 +40,7 @@ const FormAide = () => {
           axios.get("http://localhost:5050/quartiers"),
           axios.get("http://localhost:5050/citoyens", { params: { limit: 1000, statut: "actif" } })
         ]);
-        setRessources(resRessources.data.ressources || []);
+        setAllRessources(resRessources.data.ressources || []);
         setQuartiers(resQuartiers.data || []);
         setCitoyens(resCitoyens.data.citoyens || []);
       } catch (err) {
@@ -53,7 +53,7 @@ const FormAide = () => {
     fetchData();
   }, []);
 
-  // Si un citoyen est passé (depuis le calendrier), on pré-remplit le bénéficiaire et on ajuste le quartier
+  // Pré-remplissage si un citoyen est passé depuis le calendrier
   useEffect(() => {
     if (preselectedCitoyen) {
       setBeneficiaireId(preselectedCitoyen._id);
@@ -64,14 +64,14 @@ const FormAide = () => {
     }
   }, [preselectedCitoyen]);
 
-  // Si une date est passée, on la met
+  // Pré-remplissage de la date
   useEffect(() => {
     if (preselectedDate) {
-      setDateDistribution(preselectedDate.slice(0, 10)); // format yyyy-mm-dd
+      setDateDistribution(preselectedDate.slice(0, 10));
     }
   }, [preselectedDate]);
 
-  // Chargement de l'aide si on est en modification
+  // Chargement de l'aide en mode modification
   useEffect(() => {
     if (id) {
       setLoading(true);
@@ -95,7 +95,7 @@ const FormAide = () => {
     }
   }, [id]);
 
-  // Filtrer les citoyens actifs du quartier sélectionné
+  // Filtrer les citoyens du quartier sélectionné
   useEffect(() => {
     if (quartierId) {
       setCitoyensDuQuartier(
@@ -109,6 +109,39 @@ const FormAide = () => {
     }
   }, [quartierId, citoyens]);
 
+  // Filtrer les ressources en fonction du quartier sélectionné
+  useEffect(() => {
+    if (quartierId) {
+      const filtrees = allRessources.filter((r) => {
+        const resQuartierId = r.id_quartier?._id || r.id_quartier;
+        return resQuartierId === quartierId;
+      });
+      setRessourcesFiltrees(filtrees);
+
+      if (filtrees.length === 1 && !ressourceId) {
+        setRessourceId(filtrees[0]._id);
+      } else if (filtrees.length === 0) {
+        setRessourceId("");
+      }
+      if (ressourceId && !filtrees.find(r => r._id === ressourceId)) {
+        setRessourceId("");
+      }
+    } else {
+      setRessourcesFiltrees(allRessources);
+    }
+  }, [quartierId, allRessources, ressourceId]);
+
+  // Récupérer l'objet ressource sélectionnée pour l'unité
+  const ressourceSelectionnee = allRessources.find(r => r._id === ressourceId);
+
+  // Nombre de citoyens actifs dans le quartier
+  const nbHabitants = citoyensDuQuartier.length;
+
+  // Quantité finale calculée (uniquement pour les nouvelles aides collectives)
+  const quantiteFinaleCalculee = !beneficiaireId && !id && quantite
+    ? Number(quantite) * nbHabitants
+    : null;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -120,9 +153,16 @@ const FormAide = () => {
       return;
     }
 
+    // Calcul de la quantité à envoyer
+    let quantiteAEnvoyer = Number(quantite);
+    // Pour une nouvelle aide collective, on multiplie par le nombre d'habitants
+    if (!beneficiaireId && !id) {
+      quantiteAEnvoyer = Number(quantite) * nbHabitants;
+    }
+
     const payload = {
       ressource: ressourceId,
-      quantite: Number(quantite),
+      quantite: quantiteAEnvoyer,
       dateDistribution,
       beneficiaire: beneficiaireId || null,
       quartier: quartierId,
@@ -171,19 +211,46 @@ const FormAide = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          <label>Quartier * :</label>
+          <select value={quartierId} onChange={(e) => setQuartierId(e.target.value)} required>
+            <option value="">-- Choisir un quartier --</option>
+            {quartiers.map((q) => (
+              <option key={q._id} value={q._id}>
+                {q.nom} {citoyens.filter(c => (c.id_quartier?._id || c.id_quartier) === q._id).length > 0 && 
+                  `(${citoyens.filter(c => (c.id_quartier?._id || c.id_quartier) === q._id).length} actifs)`}
+              </option>
+            ))}
+          </select>
+          {quartierId && <small style={{ color: 'gray' }}>{nbHabitants} citoyen(s) actif(s) dans ce quartier</small>}
+        </div>
+
+        <div className="form-group">
           <label>Ressource * :</label>
-          <select value={ressourceId} onChange={(e) => setRessourceId(e.target.value)} required>
-            <option value="">-- Choisir une ressource --</option>
-            {ressources.map((r) => (
+          <select
+            value={ressourceId}
+            onChange={(e) => setRessourceId(e.target.value)}
+            required
+            disabled={!quartierId || ressourcesFiltrees.length === 0}
+          >
+            <option value="">
+              {!quartierId
+                ? "Sélectionnez d'abord un quartier"
+                : ressourcesFiltrees.length === 0
+                  ? "Aucune ressource pour ce quartier"
+                  : "-- Choisir une ressource --"}
+            </option>
+            {ressourcesFiltrees.map((r) => (
               <option key={r._id} value={r._id}>
-                {r.nomres} ({r.typeres} - {r.unite}) - Stock dispo : {r.quantiteactuelle}
+                {r.nomres} ({r.typeres} - {r.unite}) - Stock : {r.quantiteactuelle}
               </option>
             ))}
           </select>
         </div>
 
         <div className="form-group">
-          <label>Quantité * :</label>
+          <label>
+            {!beneficiaireId && !id ? "Quantité par personne *" : "Quantité *"} :
+          </label>
           <input
             type="number"
             min="1"
@@ -191,6 +258,17 @@ const FormAide = () => {
             onChange={(e) => setQuantite(e.target.value)}
             required
           />
+          {!beneficiaireId && !id && quantite && nbHabitants > 0 && (
+            <small style={{ color: 'green', display: 'block', marginTop: 4 }}>
+              🔹 Quantité totale pour le quartier : {Number(quantite) * nbHabitants}{' '}
+              {ressourceSelectionnee?.unite || ''} (pour {nbHabitants} citoyen(s) actif(s))
+            </small>
+          )}
+          {!beneficiaireId && id && (
+            <small style={{ color: 'gray', display: 'block', marginTop: 4 }}>
+              (Aide collective : la quantité affichée correspond au total déjà attribué)
+            </small>
+          )}
         </div>
 
         <div className="form-group">
@@ -201,16 +279,6 @@ const FormAide = () => {
             onChange={(e) => setDateDistribution(e.target.value)}
             required
           />
-        </div>
-
-        <div className="form-group">
-          <label>Quartier * :</label>
-          <select value={quartierId} onChange={(e) => setQuartierId(e.target.value)} required>
-            <option value="">-- Choisir un quartier --</option>
-            {quartiers.map((q) => (
-              <option key={q._id} value={q._id}>{q.nom}</option>
-            ))}
-          </select>
         </div>
 
         <div className="form-group">

@@ -127,19 +127,72 @@ const ListQuartier = () => {
                   <td>{q.nom}</td>
                   <td>{new Date(q.createdAt).toLocaleDateString('fr-FR')}</td>
                   <td>
-                    <div className="emp-actions">
-                      <Link to={`/admin/quartiers/edit/${q._id}`}>
-                        <button className="emp-btn-modify">
-                          <FaEdit style={{ marginRight: "5px" }} /> Modifier
-                        </button>
-                      </Link>
-                      <button
-                        className="emp-btn-delete"
-                        onClick={() => openDeleteModal(q)}
-                      >
-                        <FaTrash style={{ marginRight: "5px" }} /> Supprimer
-                      </button>
-                    </div>
+                 <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center", // centre horizontalement
+    width: "100%",            // occupe toute la cellule
+    gap: "6px",
+  }}
+>
+  <Link to={`/admin/quartiers/edit/${q._id}`}>
+    <button
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "8px 16px",
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        color: "#374151",
+        backgroundColor: "#ffffff",
+        border: "1px solid #d1d5db",
+        borderRadius: "0.5rem",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+        cursor: "pointer",
+        transition: "background 0.15s ease",
+      }}
+    >
+      <FaEdit
+        style={{
+          marginRight: "6px",
+          width: "16px",
+          height: "16px",
+          color: "#6b7280",
+        }}
+      />
+      Modifier
+    </button>
+  </Link>
+
+  <button
+    onClick={() => openDeleteModal(q)}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 16px",
+      fontSize: "0.875rem",
+      fontWeight: 500,
+      color: "#dc2626",
+      backgroundColor: "#ffffff",
+      border: "1px solid #fecaca",
+      borderRadius: "0.5rem",
+      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+      cursor: "pointer",
+      transition: "background 0.15s ease",
+    }}
+  >
+    <FaTrash
+      style={{
+        marginRight: "6px",
+        width: "16px",
+        height: "16px",
+        color: "#ef4444",
+      }}
+    />
+    Supprimer
+  </button>
+</div>
                   </td>
                 </tr>
               ))}
@@ -167,37 +220,34 @@ const ListQuartier = () => {
         </div>
 
         {/* Modal de suppression */}
-        {deleteModalOpen && (
-          <div className="emp-modal-overlay">
-            <div className="emp-modal-content">
-              <h3>Confirmer la suppression</h3>
-              <p>
-                Êtes-vous sûr de vouloir supprimer le quartier{" "}
-                <strong>{quartierToDelete?.nom}</strong> ?
-              </p>
-              <p className="emp-modal-warning">
-                ⚠️ Cette action est irréversible ! (Les ressources et citoyens liés
-                doivent être supprimés avant)
-              </p>
-              <div className="emp-modal-buttons">
-                <button
-                  onClick={confirmDelete}
-                  className="emp-modal-confirm"
-                  disabled={deleteLoading}
-                >
-                  {deleteLoading ? "Suppression..." : "Oui, supprimer"}
-                </button>
-                <button
-                  onClick={closeDeleteModal}
-                  className="emp-modal-cancel"
-                  disabled={deleteLoading}
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+       {deleteModalOpen && (
+  <div className="emp-modal-overlay">
+    <div className="emp-modal-content">
+      <h3>Confirmer la suppression</h3>
+      <p>
+        Êtes-vous sûr de vouloir supprimer le quartier{" "}
+        <strong>{quartierToDelete?.nom}</strong> ?
+      </p>
+      
+      <div className="emp-modal-buttons">
+        <button
+          onClick={confirmDelete}
+          className="emp-modal-confirm"
+          disabled={deleteLoading}
+        >
+          {deleteLoading ? "Suppression en cours…" : "Supprimer"}
+        </button>
+        <button
+          onClick={closeDeleteModal}
+          className="emp-modal-cancel"
+          disabled={deleteLoading}
+        >
+          Annuler
+        </button>
+      </div>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );

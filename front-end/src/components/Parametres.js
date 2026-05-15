@@ -41,14 +41,7 @@ const Parametres = () => {
       color: '#2e7d32',
       stats: 'Paramètres financiers'
     },
-    {
-      title: 'Jours Fériés',
-      description: 'Gérer le calendrier des jours fériés',
-      icon: <JourFerieIcon sx={{ fontSize: 40, color: '#ed6c02' }} />,
-      path: '/admin/jours-feries',
-      color: '#ed6c02',
-      stats: 'Calendrier RH'
-    }
+  
   ];
 
   const handleNavigation = (path) => {

@@ -418,10 +418,10 @@
 
 /* === LARGEURS FIXES COMPACTES === */
 .emp-table th:nth-child(1), .emp-matricule { 
-  width: 70px !important; min-width: 70px !important; max-width: 70px !important; 
+  width: 30px !important; min-width: 30px !important; max-width: 30px !important; 
 }
 .emp-table th:nth-child(2), .emp-name { 
-  width: 170px !important; min-width: 170px !important; max-width: 170px !important; 
+  width: 100px !important; min-width: 100px !important; max-width: 100px !important; 
 }
 .emp-table th:nth-child(3) { 
   width: 100px !important; min-width: 100px !important; max-width: 100px !important; 

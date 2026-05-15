@@ -40,7 +40,7 @@ const Logout = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #1289f8c4 0%, #12051fff 100%)',
+        background: 'linear-gradient(135deg, #9c9e9f50 0%, #12051fff 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -55,7 +55,7 @@ const Logout = () => {
         fullWidth
       >
         <DialogTitle sx={{ 
-          background: 'linear-gradient(135deg, #1289f8c4 0%, #12051fff 100%)',
+          background: 'linear-gradient(135deg, #818487c4 0%, #12051fff 100%)',
           color: 'warning.contrastText',
           
           display: 'flex',
@@ -92,7 +92,7 @@ const Logout = () => {
           <Button 
             onClick={handleConfirmLogout}
             variant="contained"
-          background='linear-gradient(135deg, #1289f8c4 0%, #12051fff 100%)'
+          background='linear-gradient(135deg, #909090c4 0%, #12051fff 100%)'
             startIcon={<LogoutIcon />}
             sx={{ minWidth: 100 }}
             disabled={isLoggingOut}

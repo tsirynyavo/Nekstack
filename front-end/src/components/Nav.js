@@ -34,6 +34,10 @@ const Nav = () => {
     { to: '/admin/citoyens', label: 'Citoyens', icon: <PeopleIcon /> },
     { to: '/admin/ressource', label: 'Ressources', icon: <RessourceIcon /> },
     { to: '/admin/aides', label: 'Aides', icon: <AideIcon /> },
+
+      { to: '/admin/reservations', label: 'Reserver une Stand', icon: <AideIcon /> },
+    
+      { to: '/admin/marche', label: 'Marche', icon: <AideIcon /> },
     { to: '/admin/rapports', label: 'Rapports', icon: <ReportIcon /> },
     { to: '/admin/parametres', label: 'Paramètres', icon: <SettingsIcon /> },
     { to: '/admin/logout', label: 'Déconnexion', icon: <LogoutIcon /> },
@@ -53,7 +57,7 @@ const Nav = () => {
           width: 220,
           boxSizing: 'border-box',
           background: `
-            linear-gradient(135deg, #030e19ff 0%, #115eb7ff 50%, #020a16ff 100%),
+            linear-gradient(135deg, rgba(7, 43, 79, 0.66) 0%, rgb(161, 142, 142) 50%, rgba(22, 3, 3, 0.59) 100%),
             repeating-linear-gradient(
               45deg,
               transparent,
@@ -197,7 +201,7 @@ const Nav = () => {
           }}
         />
         <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.6)', position: 'relative', zIndex: 1 }}>
-          © 2025 Fianara Smart City – Competitive Programming 1.0
+          © 2026 Fianara Smart City – Competitive Programming 1.0
         </Typography>
       </Box>
     </Drawer>
