@@ -8,7 +8,7 @@ const RapportQuartier = () => {
   const [quartiers, setQuartiers] = useState([]);
   const [citoyens, setCitoyens] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [stats, setStats] = useState({}); // { quartierId: nombre }
+  const [stats, setStats] = useState({});
   const [quartierA, setQuartierA] = useState("");
   const [quartierB, setQuartierB] = useState("");
 
@@ -28,7 +28,6 @@ const RapportQuartier = () => {
       const quartiersData = resQuartiers.data;
       const citoyensData = resCitoyens.data.citoyens || [];
 
-      // Comptage
       const compte = {};
       quartiersData.forEach(q => { compte[q._id] = 0; });
       citoyensData.forEach(c => {
@@ -108,26 +107,65 @@ const RapportQuartier = () => {
             </div>
           </div>
           {(quartierA || quartierB) && (
-            <div style={{ marginTop: 15, display: 'flex', gap: 30, justifyContent: 'center', fontSize: '1.2em' }}>
-              {quartierA && (
-                <div>
-                  <strong>{getNomQuartier(quartierA)}</strong> : {nbA} citoyen(s)
-                </div>
-              )}
-              {quartierA && quartierB && <div>VS</div>}
-              {quartierB && (
-                <div>
-                  <strong>{getNomQuartier(quartierB)}</strong> : {nbB} citoyen(s)
-                </div>
-              )}
+            <>
+              <div style={{ marginTop: 15, display: 'flex', gap: 30, justifyContent: 'center', fontSize: '1.2em' }}>
+                {quartierA && (
+                  <div>
+                    <strong>{getNomQuartier(quartierA)}</strong> : {nbA} citoyen(s)
+                  </div>
+                )}
+                {quartierA && quartierB && <div>VS</div>}
+                {quartierB && (
+                  <div>
+                    <strong>{getNomQuartier(quartierB)}</strong> : {nbB} citoyen(s)
+                  </div>
+                )}
+                {quartierA && quartierB && (
+                  <div style={{ color: nbA > nbB ? 'green' : nbA < nbB ? 'red' : 'inherit', fontWeight: 'bold' }}>
+                    {nbA > nbB ? `↗ ${getNomQuartier(quartierA)} a plus d'habitants` : 
+                     nbA < nbB ? `↗ ${getNomQuartier(quartierB)} a plus d'habitants` : 
+                     "Égalité parfaite"}
+                  </div>
+                )}
+              </div>
+
+              {/* 🆕 Graphique à barres horizontales (uniquement si les deux quartiers sont sélectionnés) */}
               {quartierA && quartierB && (
-                <div style={{ color: nbA > nbB ? 'green' : nbA < nbB ? 'red' : 'inherit', fontWeight: 'bold' }}>
-                  {nbA > nbB ? `↗ ${getNomQuartier(quartierA)} a plus d'habitants` : 
-                   nbA < nbB ? `↗ ${getNomQuartier(quartierB)} a plus d'habitants` : 
-                   "Égalité parfaite"}
+                <div style={{ marginTop: 25 }}>
+                  <h4>Comparaison visuelle</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 500, margin: '0 auto' }}>
+                    {/* Barre Quartier A */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ width: 120, fontWeight: 'bold' }}>{getNomQuartier(quartierA)}</span>
+                      <div style={{ flex: 1, background: '#e0e0e0', borderRadius: 5, height: 25, overflow: 'hidden' }}>
+                        <div style={{
+                          width: `${Math.min((nbA / Math.max(nbA, nbB, 1)) * 100, 100)}%`,
+                          height: '100%',
+                          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                          borderRadius: 5,
+                          transition: 'width 0.4s ease'
+                        }} />
+                      </div>
+                      <span style={{ minWidth: 40, textAlign: 'right' }}>{nbA}</span>
+                    </div>
+                    {/* Barre Quartier B */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ width: 120, fontWeight: 'bold' }}>{getNomQuartier(quartierB)}</span>
+                      <div style={{ flex: 1, background: '#e0e0e0', borderRadius: 5, height: 25, overflow: 'hidden' }}>
+                        <div style={{
+                          width: `${Math.min((nbB / Math.max(nbA, nbB, 1)) * 100, 100)}%`,
+                          height: '100%',
+                          background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                          borderRadius: 5,
+                          transition: 'width 0.4s ease'
+                        }} />
+                      </div>
+                      <span style={{ minWidth: 40, textAlign: 'right' }}>{nbB}</span>
+                    </div>
+                  </div>
                 </div>
               )}
-            </div>
+            </>
           )}
         </div>
 

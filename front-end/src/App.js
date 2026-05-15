@@ -1,5 +1,6 @@
 import './App.css';
 import Nav from './components/Nav';
+import 'leaflet/dist/leaflet.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import SignUp from './components/Register';
@@ -9,14 +10,14 @@ import PrivateComponent from './components/PrivateComponent';
 import AdminPrivateComponent from './components/AdminPrivateComponent';
 import AdminRegister from './components/AdminRegister';
 import Report from './components/Report';
+import RoutingMachine from './components/RoutingMachine.jsx'
 
 
 import AdminDashboard from './components/AdminDashboard';
 
 import Logout from './components/Logout';
 import ManageStudents from './components/ManageStudents'; // Nouveau composant
-
-import Rooms from './components/Rooms'; // Nouveau composant pour gérer les chambres
+ // Nouveau composant pour gérer les chambres
 import ReservationList from './components/ReservationList';
 import ReservationForm from './components/ReservationForm';
 import HomeRedirect from './components/HomeRedirect';
@@ -27,10 +28,10 @@ import StudentsView from './components/StudentsView';
 
 import ChangePassword from './components/ChangePassword.js';
 import FormAide from './components/FormAide';
-import UserProfileEmploye from './components/UserProfileEmploye';
+import UserProfileCitoyen from './components/UserProfileCitoyen';
 import ListQuartier from './components/ListQuartier';
 import FormQuartier from './components/FormQuartier';
-import ListeDepartement from './components/ListeDepartement';
+
 import FormDepartement from './components/FormDepartement';
 import ListCitoyen from './components/ListCitoyen.js';
 import FormCitoyen from './components/FormCitoyen';
@@ -40,8 +41,6 @@ import ListAide from './components/ListAide';
 
 import DemandesEnCours from "./components/DemandesEnCours";
 import MarkPresence from './components/MarkPresence';
-import ListPresence from './components/ListPresence';
-import FormPresence from './components/FormPresence';
 import TableauStatistiquesComplet from './components/TableauStatistiquesComplet';
 import PresenceEmploye from "./components/PresenceEmploye"; // ajuste le chemin
 import RapportPresence from './components/RapportPresence';
@@ -54,17 +53,20 @@ import FormPaiement from './components/FormPaiement';
 import ListePaiements from './components/ListePaiements.js';
 import PaiementEmploye from "./components/PaiementEmploye";
 import PaiementMvola from './components/PaiementMvola';
-import ListNoteInterne from './components/ListNoteInterne.js';
-import FormNoteInterne from './components/FormNoteInterne.js';
+import ListMarche from './components/ListMarche';
+import FormMarche from './components/FormMarche.js';
 import ViewNoteInterne from './components/ViewNoteInterne.js';
-
-import Dashboard from './components/Dashboard.js';
+import ListReservation from './components/ListReservation.js';
+import FormReservation from './components/FormReservation.js';
+import StatistiquesGenerales from './components/StatistiquesGenerales';
 import ListTaches from './components/ListTaches.js';
 import FormTache from './components/FormTache.js';
 import ViewTache from './components/ViewTache.js';
 import Parametres from './components/Parametres.js';
 import RapportQuartier from './components/RapportQuartier.js';
-
+import ViewMarche from './components/ViewMarche.js';
+import RoadTrafficPage from "./components/RoadTrafficPage.jsx";
+ 
 
 function App() {
   return (
@@ -81,11 +83,11 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/admin/register" element={<AdminRegister />} />
             <Route path="/admin/login" element={<AdminLogin />} />
-  <Route path="/admin/dashboard" element={<Dashboard />} />
+  <Route path="/admin/dashboard" element={<StatistiquesGenerales />} />
 
 
-            <Route path="/employee/login" element={<UserProfileEmploye />} />
-           
+            <Route path="/citoyen/login" element={<UserProfileCitoyen />} />
+           <Route path="/citoyen/RoadTrafficPage" element={<RoadTrafficPage />} />
 
 
             <Route path="/employee/demandes-en-cours" element={<DemandesEnCours />} />
@@ -115,13 +117,15 @@ function App() {
 <Route path="/admin/parametres" element={<Parametres />} />
               
 
-              <Route path="/admin/paiement" element={<Rooms />} />
+             
               <Route path="/admin/paiement/add" element={<RoomForm />} />
               <Route path="/admin/paiement/edit/:id" element={<RoomForm />} />
 
               <Route path="/admin/paiements/mvola" element={<PaiementMvola />} />
 
 
+              <Route path="/admin/RoutingMachine" element={<RoutingMachine />} />
+ 
 
               <Route path="/admin/etudiants" element={<ManageStudents />} />
               <Route path="/admin/etudiants/add" element={<StudentForm />} />
@@ -135,10 +139,10 @@ function App() {
 
 
 // Ajoute ces routes dans ton App.js
-              <Route path="/admin/notes-internes" element={<ListNoteInterne />} />
-              <Route path="/admin/notes-internes/add" element={<FormNoteInterne />} />
-              <Route path="/admin/notes-internes/edit/:id" element={<FormNoteInterne />} />
-              <Route path="/admin/notes-internes/view/:id" element={<ViewNoteInterne />} />
+              <Route path="/admin/marche" element={<ListMarche />} />
+              <Route path="/admin/marches/add" element={<FormMarche />} />
+              <Route path="/admin/marches/edit/:id" element={<FormMarche />} />
+              <Route path="/admin/marches/view/:id" element={<ViewMarche />} />
 
 
               // Dans votre App.js ou routes
@@ -146,10 +150,13 @@ function App() {
 <Route path="/admin/taches/add" element={<FormTache />} />
 <Route path="/admin/taches/edit/:id" element={<FormTache />} />
 <Route path="/admin/taches/view/:id" element={<ViewTache />} />
+
+<Route path="/admin/reservations" element={<ListReservation />} />
+<Route path="/admin/reservations/add" element={<FormReservation />} />
+<Route path="/admin/reservations/edit/:id" element={<FormReservation />} />
              
 
-              <Route path="/admin/departements" element={<ListeDepartement />} />
-              <Route path="/admin/departements/add" element={<FormDepartement />} />
+               <Route path="/admin/departements/add" element={<FormDepartement />} />
               <Route path="/admin/departements/edit/:id" element={<FormDepartement />} />
 
               <Route path="/admin/quartiers" element={<ListQuartier />} />
@@ -165,7 +172,6 @@ function App() {
               <Route path="/admin/aides/add" element={<FormAide />} />
               <Route path="/admin/aides/edit/:id" element={<FormAide />} />
 
-              <Route path="/admin/presence" element={<ListPresence />} />
                 // Route principale pour la page Rapports
               <Route path="/admin/rapports" element={<Rapports />} />
 
@@ -177,9 +183,7 @@ function App() {
              
               // Gardez vos routes existantes
               <Route path="/admin/presences/mark" element={<MarkPresence />} />
-              <Route path="/admin/presences/add" element={<FormPresence />} />
-              <Route path="/admin/presences/edit/:id" element={<FormPresence />} />
-
+        
               <Route path="/admin/statistiques-complet/:employeId" element={<TableauStatistiquesComplet />} />
         
 <Route path="/admin/citoyens" element={<ListCitoyen />} />

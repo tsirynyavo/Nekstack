@@ -48,14 +48,7 @@ const Rapports = () => {
       color: '#ed6c02',
       stats: 'Comparaison entre quartier'
     },
-    {
-      title: 'Journal de paie',
-      description: 'Accéder au journal et historiques de paie',
-      icon: <PaieIcon sx={{ fontSize: 32, color: '#9c27b0' }} />,
-      path: '/admin/rapports/journal-paie',
-      color: '#9c27b0',
-      stats: 'Historique financier'
-    }
+   
   ];
 
   const handleNavigation = (path) => {

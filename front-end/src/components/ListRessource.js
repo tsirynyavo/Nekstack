@@ -254,7 +254,7 @@ const ListRessource = () => {
                     </span>
                   </td>
                   <td>
-                    <div className="emp-actions">
+                  
                      
                       <Link to={`/admin/ressource/edit/${r._id}`}>
                         <button className="emp-btn-modify"><FaEdit style={{ marginRight: "5px" }} /> Modifier</button>
@@ -262,7 +262,7 @@ const ListRessource = () => {
                       <button className="emp-btn-delete" onClick={() => openDeleteModal(r)}>
                         <FaTrash style={{ marginRight: "5px" }} /> Supprimer
                       </button>
-                    </div>
+                  
                   </td>
                 </tr>
               ))}
@@ -286,7 +286,7 @@ const ListRessource = () => {
                 Êtes-vous sûr de vouloir supprimer la ressource{" "}
                 <strong>{ressourceToDelete?.nomres}</strong> ?
               </p>
-              <p className="emp-modal-warning">⚠️ Cette action est irréversible !</p>
+              
               <div className="emp-modal-buttons">
                 <button onClick={confirmDelete} className="emp-modal-confirm" disabled={deleteLoading}>
                   {deleteLoading ? "Suppression..." : "Oui, supprimer"}

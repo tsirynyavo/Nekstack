@@ -114,7 +114,9 @@ const ListCitoyen = () => {
           "Nom & Prénom": `${c.nom} ${c.prenom}`,
           CIN: c.cin,
           Email: c.email,
+
           "État civil": c.etat,
+          Téléphone: c.telephone || "-",   // ← AJOUT
           Quartier: c.quartier_nom || "-",
           Statut: c.statut,
           "Date d'enregistrement": c.datedesauvergarde
@@ -229,6 +231,7 @@ const ListCitoyen = () => {
                 <th>Matricule</th>
                 <th>Nom & Prénom</th>
                 <th>Email</th>
+                
                 <th>CIN</th>
                 <th>État civil</th>
                 <th>Quartier</th>
@@ -242,7 +245,7 @@ const ListCitoyen = () => {
                   <td className="emp-matricule">{c.matricule}</td>
                   <td className="emp-name">{c.nom} {c.prenom}</td>
                   <td>{c.email}</td>
-                  <td>{c.cin}</td>
+                <td>{c.cin}</td>
                   <td>{c.etat}</td>
                   <td>{c.id_quartier?.nom || "-"}</td>
                   <td>
@@ -251,18 +254,98 @@ const ListCitoyen = () => {
                     </span>
                   </td>
                   <td>
-                    <div className="emp-actions">
-                      <Link to={`/admin/citoyens/view/${c._id}`}>
-                        <button className="emp-btn-view"><FaEye style={{ marginRight: "5px" }} /> Voir</button>
-                      </Link>
-                      <Link to={`/admin/citoyens/edit/${c._id}`}>
-                        <button className="emp-btn-modify"><FaEdit style={{ marginRight: "5px" }} /> Modifier</button>
-                      </Link>
-                      <button className="emp-btn-delete" onClick={() => openDeleteModal(c)}>
-                        <FaTrash style={{ marginRight: "5px" }} /> Supprimer
-                      </button>
-                    </div>
-                  </td>
+    {/* Bouton Voir – bleu discret */}
+    <Link to={`/admin/citoyens/view/${c._id}`}>
+      <button
+        className="emp-btn-view"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          padding: "8px 16px",
+          fontSize: "0.875rem",
+          fontWeight: 500,
+          color: "#1d4ed8",
+          backgroundColor: "#ffffff",
+          border: "1px solid #bfdbfe",
+          borderRadius: "0.5rem",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+          cursor: "pointer",
+          transition: "background 0.15s ease",
+        }}
+      >
+        <FaEye
+          style={{
+            marginRight: "6px",
+            width: "16px",
+            height: "16px",
+            color: "#3b82f6",
+          }}
+        />
+        Voir
+      </button>
+    </Link>
+
+    {/* Bouton Modifier – gris sobre */}
+    <Link to={`/admin/citoyens/edit/${c._id}`}>
+      <button
+        className="emp-btn-modify"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          padding: "8px 16px",
+          fontSize: "0.875rem",
+          fontWeight: 500,
+          color: "#374151",
+          backgroundColor: "#ffffff",
+          border: "1px solid #d1d5db",
+          borderRadius: "0.5rem",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+          cursor: "pointer",
+          transition: "background 0.15s ease",
+        }}
+      >
+        <FaEdit
+          style={{
+           
+            width: "16px",
+            height: "16px",
+            color: "#6b7280",
+          }}
+        />
+        Modifier
+      </button>
+    </Link>
+
+    {/* Bouton Supprimer – rouge discret */}
+    <button
+      className="emp-btn-delete"
+      onClick={() => openDeleteModal(c)}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "8px 16px",
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        color: "#dc2626",
+        backgroundColor: "#ffffff",
+        border: "1px solid #fecaca",
+        borderRadius: "0.5rem",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+        cursor: "pointer",
+        transition: "background 0.15s ease",
+      }}
+    >
+      <FaTrash
+        style={{
+          marginRight: "6px",
+          width: "16px",
+          height: "16px",
+          color: "#ef4444",
+        }}
+      />
+      Supprimer
+    </button>
+</td>
                 </tr>
               ))}
             </tbody>
@@ -286,7 +369,7 @@ const ListCitoyen = () => {
                 <strong>{citoyenToDelete?.nom} {citoyenToDelete?.prenom}</strong>
                 {citoyenToDelete?.matricule && ` (Matricule: ${citoyenToDelete.matricule})`} ?
               </p>
-              <p className="emp-modal-warning">⚠️ Cette action est irréversible !</p>
+              
               <div className="emp-modal-buttons">
                 <button onClick={confirmDelete} className="emp-modal-confirm" disabled={deleteLoading}>
                   {deleteLoading ? "Suppression..." : "Oui, supprimer"}
