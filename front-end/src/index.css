@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    @apply border-gray-800;
-  }
-  
-  body {
-    @apply bg-black text-white antialiased;
-  }
-}
-
 /* Scrollbar cyberpunk */
 ::-webkit-scrollbar {
   width: 6px;

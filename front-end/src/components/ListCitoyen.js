@@ -254,10 +254,11 @@ const ListCitoyen = () => {
                     </span>
                   </td>
                   <td>
+                    
     {/* Bouton Voir – bleu discret */}
     <Link to={`/admin/citoyens/view/${c._id}`}>
       <button
-        className="emp-btn-view"
+       
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -281,14 +282,14 @@ const ListCitoyen = () => {
             color: "#3b82f6",
           }}
         />
-        Voir
+       
       </button>
     </Link>
 
     {/* Bouton Modifier – gris sobre */}
     <Link to={`/admin/citoyens/edit/${c._id}`}>
       <button
-        className="emp-btn-modify"
+        
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -312,13 +313,13 @@ const ListCitoyen = () => {
             color: "#6b7280",
           }}
         />
-        Modifier
+        
       </button>
     </Link>
 
     {/* Bouton Supprimer – rouge discret */}
     <button
-      className="emp-btn-delete"
+      
       onClick={() => openDeleteModal(c)}
       style={{
         display: "inline-flex",
@@ -343,7 +344,7 @@ const ListCitoyen = () => {
           color: "#ef4444",
         }}
       />
-      Supprimer
+      
     </button>
 </td>
                 </tr>
