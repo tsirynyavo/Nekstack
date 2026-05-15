@@ -11,9 +11,9 @@ const FIANAR_CENTER = [-21.4536, 47.0854];
 const fetchBinsData = async () => {
   // Remplacez par : const res = await fetch('http://votre-api.com/bins');
   return [
-    { id: "BAC-742", location: "Centre-Ville", fill: 88, lat: -21.4536, lng: 47.0854 },
-    { id: "BAC-109", location: "Antarandolo",  fill: 22, lat: -21.4471, lng: 47.0901 },
-    { id: "BAC-334", location: "Tsianolondroa",fill: 65, lat: -21.4602, lng: 47.0780 },
+    { id: "BAC-1", location: "Centre-Ville", fill: 88, lat: -21.4536, lng: 47.0854 },
+    { id: "BAC-2", location: "Antarandolo",  fill: 22, lat: -21.4471, lng: 47.0901 },
+    { id: "BAC-3", location: "Tsianolondroa",fill: 65, lat: -21.4602, lng: 47.0780 },
   ];
 };
 
