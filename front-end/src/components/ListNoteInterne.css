@@ -1,0 +1,467 @@
+/* === LISTE NOTES INTERNES - STYLE COMPACT === */
+
+.ndotes-list-header {
+  margin-left: 210px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  min-height: 70vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+}
+
+.ndotes-list-header h2 {
+  font-size: 22px;
+  color: #6c757d !important; 
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 15px 0;
+}
+
+/* Conteneur recherche et boutons */
+.sedarch-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.sedarch-box input {
+  padding: 6px 10px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+/* Boutons */
+.btcn, .bctn, .bccctn, .bcstn, .btsn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-reset {
+  background: #6c757d;
+  color: rgb(223, 205, 205);
+  border: 1px solid #6c757d;
+}
+
+.btn-reset:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+/* Bouton Nouvelle Note Interne - TAILLE NORMALE *//* === BOUTON NOUVELLE NOTE - COMPACT === *//* === Bouton Ajouter – Vert doux pastel === */
+.btn-add {
+  background: #78c98f !important;        /* Vert pastel doux */
+  color: white !important;
+  border: 2px solid #63b57a !important;  /* Bordure verte pastel */
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  font-size: 12px;
+  display: inline-flex;  /* Empêche l'expansion */
+  width: auto;           /* Largeur automatique */
+  min-width: 0;          /* Aucun minimum */
+  white-space: nowrap;   /* Empêche le retour à la ligne */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.btn-add:hover {
+  background: #63b57a !important;        /* Vert pastel foncé */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 9px rgba(0,0,0,0.18);
+}
+
+/* Si le bouton est toujours trop large, ajoutez aussi : */
+.bctn {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+/* Ou plus spécifiquement pour le bouton d'ajout */
+.ndotes-list-header .btn-add {
+  width: fit-content !important;
+  display: inline-flex !important;
+}
+.ndotes-list-header th {
+  padding: 8px 6px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 11px;
+  border-right: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.ndotes-list-header th:last-child {
+  border-right: none;
+  
+}
+
+.ndotes-list-header td {
+  padding: 6px 5px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+  border-right: 1px solid #dee2e6;
+  color: #2c3e50;
+  width: 160px;
+}
+
+.ndotes-list-header td:last-child {
+  border-right: none;
+}
+
+.ndotes-list-header tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.ndotes-list-header tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Colonnes spécifiques */
+.ndotes-list-header td:nth-child(2) { /* Contenu */
+  max-width: 300px;
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 11px;
+}
+
+.ndotes-list-header td:nth-child(3) { /* Départements */
+  font-size: 11px;
+}
+
+/* Badge tous départements */
+.ndotes-list-header td span {
+  font-size: 11px;
+  font-weight: 600;
+}
+/* === Bouton Voir (Bleu pastel) === */
+.bccctn.btn-view {
+  background: #5a8fdc !important;        /* Bleu pastel */
+  color: white !important;
+  border: 2px solid #4a7dc5 !important;
+  padding: 4px 8px;
+  font-size: 10px;
+  min-width: 50px;
+  height: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.bccctn.btn-view:hover {
+  background: #4a7dc5 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+}
+
+
+/* === Bouton Modifier (Vert pastel) === */
+.bctn.btn-modify {
+  background: #78c98f !important;        /* Vert pastel */
+  color: white !important;
+  border: 2px solid #63b57a !important;
+  padding: 4px 8px;
+  font-size: 10px;
+  min-width: 60px;
+  height: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.bctn.btn-modify:hover {
+  background: #63b57a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+}
+
+
+/* === Bouton Supprimer (Rouge pastel) === */
+.btcn.btn-delete {
+  background: #e17c7c !important;        /* Rouge pastel */
+  color: white !important;
+  border: 2px solid #cc6666 !important;
+  padding: 4px 8px;
+  font-size: 10px;
+  min-width: 70px;
+  height: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btcn.btn-delete:hover {
+  background: #cc6666 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+}
+
+
+/* Pagination */
+.ndotes-list-header > div:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ndotes-list-header > div:last-of-type button {
+  padding: 6px 12px;
+  border: 1px solid #dbdfe3;
+  background: rgb(17, 75, 156);
+  color: #000000;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+.ndotes-list-header > div:last-of-type button:hover:not(:disabled) {
+  background: #092848;
+  color: rgb(0, 0, 0);
+  transform: translateY(-1px);
+}
+
+.ndotes-list-header > div:last-of-type button:disabled {
+  background: #f8f9fa;
+  color: #000000;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ndotes-list-header > div:last-of-type span {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 12px;
+}
+
+/* Modal de suppression */
+.modcal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.deccclete-modal {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease;
+}
+
+.mocdal-header {
+  background: #f8f9fa;
+  color: #2c3e50;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.mocdal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wccarning-icon {
+  font-size: 18px;
+  color: #a74e59;
+}
+
+.modcal-body {
+  padding: 20px;
+}
+
+.modcal-body p {
+  margin: 0 0 15px 0;
+  color: #040404;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.notce-preview {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #dee2e6;
+}
+
+.prevciew-item, .previcew-item {
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: #2c3e50;
+}
+
+.prevciew-item strong, .previcew-item strong {
+  color: #2c3e50;
+}
+
+.warning-messccage {
+  background: #fff5f5;
+  color: #000000;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #f8d7da;
+  font-weight: 600;
+  text-align: center;
+  font-size: 11px;
+}
+
+.modal-foocter {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.bcstn.btn-cancel {
+  background: #000000;
+  color: rgb(0, 0, 0);
+  padding: 8px 16px;
+  font-size: 11px;
+}
+
+.bcstn.btn-cancel:hover:not(:disabled) {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+.btsn.btn-confirm-delete {
+  background: #dc3545;
+  color: rgb(0, 0, 0);
+  padding: 8px 16px;
+  font-size: 11px;
+}
+
+.btsn.btn-confirm-delete:hover:not(:disabled) {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.loacsding-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .ndotes-list-header {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sedarch-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .sedarch-box input {
+    width: 100%;
+  }
+  
+  .ndotes-list-header table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .deccclete-modal {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .modal-foocter {
+    flex-direction: column;
+  }
+  
+  .ndotes-list-header > div:last-of-type {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ndotes-list-header h2 {
+    font-size: 18px;
+  }
+  
+  .mocdal-header {
+    padding: 12px;
+  }
+  
+  .modcal-body {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,307 @@
+/* === LISTE JOURS FÉRIÉS - STYLE COMPACT ET AJUSTÉ POUR PAGE FIXE === */
+
+.studssents-list-header {
+  margin-left: 210px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 11.5px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre principal */
+.studssents-list-header h2 {
+  font-size: 17px;
+  color: #343a40;
+  margin: 0 0 6px 0;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  top: -4px; /* monte un peu le titre */
+}
+
+/* Barre de recherche */
+.secarch-box {
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.secarch-box input {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 230px;
+  font-size: 10.5px;
+  transition: all 0.3s ease;
+}
+
+.secarch-box input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Bouton ajouter */
+.bcctn.btn-add {
+  padding: 5px 10px;
+  background-color:#007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10.5px;
+  font-weight: 500;
+  margin: 4px 0 6px 0;
+  transition: all 0.3s ease;
+}
+
+.bcctn.btn-add:hover {
+  background-color: #007bff7f;
+}
+
+/* Info pagination haut */
+.paginadtion-info-top {
+  font-size: 9.8px;
+  color: #6c757d;
+  margin-bottom: 6px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Table principale */
+.table-contacsiner {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex-grow: 1;
+  max-height: calc(100vh - 230px);
+  overflow-y: auto;
+}
+
+.table-contacsiner table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  border: 1px solid #dee2e6;
+}
+
+.table-contacsiner th, 
+.table-contacsiner td {
+  padding: 6px 5px;
+  text-align: left;
+  border: 1px solid #dee2e6;
+   width: 100px;  /* Réduit de ~180px à 160px */
+}
+
+.table-contacsiner th {
+  background: #f1f3f5;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.table-contacsiner tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.table-contacsiner tr:hover {
+  background-color: #eef2f7;
+}
+
+/* Cellule description */
+.descrizption-cell {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #555;
+}
+
+/* Boutons actions */
+.actiozns-buttons {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.bdtcsn.btn-modify,
+.btssn.btn-delete {
+  padding: 3px 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.bdtcsn.btn-modify {
+  background-color: #2dad47;
+  color: white;
+}
+
+.bdtcsn.btn-modify:hover {
+  background-color: #194c24;
+}
+
+.btssn.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btssn.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Aucun résultat */
+.no-dazta {
+  text-align: center;
+  padding: 10px;
+  color: #6c757d;
+  font-size: 10.5px;
+  font-style: italic;
+}
+
+/* Chargement */
+.loadinzzg-table {
+  text-align: center;
+  padding: 10px;
+  color: #6c757d;
+  font-size: 10.5px;
+}
+
+/* Pagination bas — FIXÉE JUSTE SOUS LE TABLEAU */
+.paginatizon-simple {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 6px;
+  background: #fff;
+  border-top: 1px solid #dee2e6;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+}
+
+.paginatzion-btn, .paginadztion-btn {
+  padding: 4px 8px;
+  border: 1px solid #007bff;
+  background: white;
+  color: #007bff;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 10.5px;
+  transition: all 0.3s ease;
+}
+
+.paginatzion-btn:hover:not(:disabled),
+.paginadztion-btn:hover:not(:disabled) {
+  background: #007bff;
+  color: white;
+}
+
+.paginatzion-btn:disabled,
+.paginadztion-btn:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #dee2e6;
+  cursor: not-allowed;
+}
+
+.pagiznation-info {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 10.5px;
+}
+
+/* Modal suppression */
+.presendcex-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.presedncex-modal {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  width: 280px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  text-align: center;
+  font-size: 11px;
+}
+
+.presedncex-modal h3 {
+  color: #dc3545;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.presencdex-form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-deletde-modal,
+.btdn-cancel-modal {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-deletde-modal {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-deletde-modal:hover {
+  background: #c82333;
+}
+
+.btdn-cancel-modal {
+  background: #6c757d;
+  color: white;
+}
+
+.btdn-cancel-modal:hover {
+  background: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .studssents-list-header {
+    margin-left: 0;
+    padding: 8px;
+  }
+
+  .secarch-box input {
+    width: 100%;
+  }
+
+  .actiozns-buttons {
+    flex-direction: column;
+  }
+
+  .paginatizon-simple {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

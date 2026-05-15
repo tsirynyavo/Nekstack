@@ -1,0 +1,274 @@
+/* Conteneur principal */
+.xnotes-employe-container {
+  background-color: white;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* En-tête */
+.xnotes-header {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.xnotes-header h2 {
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.xnotes-subtitle {
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+/* Barre de recherche */
+.xnotes-search {
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xsearch-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background: white;
+}
+
+.xsearch-box input {
+  border: none;
+  outline: none;
+  margin-left: 8px;
+  width: 300px;
+  background: transparent;
+}
+
+.xsearch-icon {
+  color: #007bff;
+}
+
+.xnotes-count {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Liste des notes */
+.xnotes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Carte de note */
+.xnote-card {
+  border: 1px solid #9aa4ad;
+  border-radius: 4px;
+  padding: 15px;
+  background: white;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.xnote-card:hover {
+  box-shadow: 0 2px 4px rgba(227, 229, 230, 0.2);
+}
+
+.xnote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d7dce2;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.xnote-title {
+  color: #333;
+  margin: 0;
+}
+
+.xvisibility-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid #fdfeff;
+}
+
+.visibility-all {
+  background-color: #f0f2f4;
+  color: #007bff;
+}
+
+.visibility-targeted {
+  background-color: #ffffff;
+  color: #6d6a67;
+  border-color: #fafafa;
+}
+
+.xnote-preview {
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.xnote-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #d1d3d5;
+  padding-top: 10px;
+}
+
+.xnote-meta {
+  display: flex;
+  gap: 15px;
+}
+
+.xmeta-item {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 12px;
+}
+
+.xread-more {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* État vide */
+.xno-notes {
+  text-align: center;
+  color: #666;
+  padding: 40px;
+  border: 1px solid #bcbec1;
+  border-radius: 4px;
+  background: white;
+}
+
+/* Modal */
+.xmodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.xmodal {
+  background: white;
+  border-radius: 4px;
+  border: 2px solid #007bff;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.xmodal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #007bff;
+  padding: 15px 20px;
+}
+
+.xmodal-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.xbtn-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #733e3e;
+}
+
+.xmodal-body {
+  padding: 20px;
+}
+
+.xnote-metadata {
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.xmetadata-row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.xmetadata-label {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.xdepartements-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.xdepartement-tag {
+  background-color: #e3f2fd;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid #007bff;
+}
+
+.xnote-content {
+  color: #333;
+  line-height: 1.6;
+}
+
+.xnote-content p {
+  margin-bottom: 10px;
+}
+
+.xmodal-footer {
+  border-top: 1px solid #007bff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.xbtn {
+  padding: 8px 16px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}

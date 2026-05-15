@@ -1,0 +1,244 @@
+/* Page de visualisation employé */
+.view-employe {
+  margin-left: 230px;
+  padding: 15px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Boutons en haut - CORRIGÉ */
+.action-buttons {
+  display: flex;
+  justify-content: flex-start; /* Changé de flex-end à flex-start */
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.btn-edit, .btn-back {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.btn-edit {
+  background: #3498db;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #2980b9;
+}
+
+.btn-back {
+  background: #95a5a6;
+  color: white;
+}
+
+.btn-back:hover {
+  background: #7f8c8d;
+}
+
+.view-employe h2 {
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+/* Header avec photo et infos de base - ESPACES RÉDUITS */
+.employee-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  border-left: 3px solid #3498db;
+}
+
+.photo-section {
+  flex-shrink: 0;
+}
+
+.employee-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ecf0f1;
+}
+
+.basic-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+
+.basic-info p {
+  margin: 3px 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.basic-info strong {
+  color: #34495e;
+  font-weight: 600;
+}
+
+/* Badges de statut */
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 5px;
+  text-transform: capitalize;
+}
+
+.status-actif {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.status-démission {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.status-licenciement {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.status-retraite {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+
+/* Sections d'information - ESPACES RÉDUITS */
+.info-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.info-section {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-top: 2px solid #3498db;
+}
+
+.info-section h3 {
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+/* Grille d'information - ESPACES RÉDUITS */
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 0;
+  border-bottom: 1px solid #f8f9fa;
+  font-size: 12px;
+}
+
+.info-item strong {
+  color: #2c3e50;
+  font-weight: 600;
+  min-width: 110px;
+  font-size: 12px;
+}
+
+.info-item:not(:has(strong)) {
+  padding-left: 110px;
+}
+
+.sub-info {
+  font-size: 10px;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 1px;
+  margin-left: 110px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .view-employe {
+    margin-left: 0;
+    padding: 10px;
+  }
+  
+  .employee-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 12px;
+  }
+  
+  .info-sections {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .info-item strong {
+    min-width: auto;
+  }
+  
+  .info-item:not(:has(strong)),
+  .sub-info {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .action-buttons {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btn-edit, .btn-back {
+    width: 100%;
+    max-width: 180px;
+    padding: 5px 10px;
+  }
+  
+  .employee-photo {
+    width: 60px;
+    height: 60px;
+  }
+}
