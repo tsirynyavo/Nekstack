@@ -257,11 +257,64 @@ const ListRessource = () => {
                   
                      
                       <Link to={`/admin/ressource/edit/${r._id}`}>
-                        <button className="emp-btn-modify"><FaEdit style={{ marginRight: "5px" }} /> Modifier</button>
-                      </Link>
-                      <button className="emp-btn-delete" onClick={() => openDeleteModal(r)}>
-                        <FaTrash style={{ marginRight: "5px" }} /> Supprimer
-                      </button>
+                        {/* Bouton Modifier – avec Link */}
+
+  <button
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      padding: "8px 16px",
+      fontSize: "0.875rem",
+      fontWeight: 500,
+      color: "#374151",
+      backgroundColor: "#ffffff",
+      border: "1px solid #d1d5db",
+      borderRadius: "0.5rem",
+      boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+      cursor: "pointer",
+      transition: "background 0.15s ease",
+    }}
+  >
+    <FaEdit
+      style={{
+        marginRight: "6px",
+        width: "16px",
+        height: "16px",
+        color: "#6b7280",
+      }}
+    />
+   
+  </button>
+</Link>
+
+{/* Bouton Supprimer – rouge discret */}
+<button
+  onClick={() => openDeleteModal(r)}
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    padding: "8px 16px",
+    fontSize: "0.875rem",
+    fontWeight: 500,
+    color: "#dc2626",
+    backgroundColor: "#ffffff",
+    border: "1px solid #fecaca",
+    borderRadius: "0.5rem",
+    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+    cursor: "pointer",
+    transition: "background 0.15s ease",
+  }}
+>
+  <FaTrash
+    style={{
+      marginRight: "6px",
+      width: "16px",
+      height: "16px",
+      color: "#ef4444",
+    }}
+  />
+  
+</button>
                   
                   </td>
                 </tr>

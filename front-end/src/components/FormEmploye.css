@@ -117,6 +117,7 @@
   padding: 4px 8px; /* Réduit */
   border-radius: 4px;
   border-left: 3px solid #3498db;
+  border-left: 3px solid #3498db;
   margin-top: -2px; /* Négatif pour remonter davantage */
   margin-bottom: 3px; /* Réduit */
   min-height: 40px; /* Réduit */

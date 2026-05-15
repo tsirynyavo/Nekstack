@@ -41,7 +41,7 @@ const Rapports = () => {
       stats: 'Suivi de nos restes de ressources'
     },
     {
-      title: 'Nombrles effectifs par quartier ',
+      title: 'Nombres effectifs quartier ',
       description: 'Comparaison des effectifs   par quartier ',
       icon: <SoldeIcon sx={{ fontSize: 32, color: '#ed6c02' }} />,
       path: '/admin/rapports/quartiers',
