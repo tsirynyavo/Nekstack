@@ -1,0 +1,28 @@
+{
+  "annonces": [
+    {
+      "id": 1,
+      "quartier": "Andrainjato Sud",
+      "titre": "Coupure de courant",
+      "message": "Coupure de courant ce lundi prochain de 8h à 17h",
+      "date": "2026-05-20",
+      "type": "electricite"
+    },
+    {
+      "id": 2,
+      "quartier": "Andrainjato Sud",
+      "titre": "Poteau fragilisé",
+      "message": "Poteau penché après le cyclone - Danger",
+      "date": "2026-05-18",
+      "type": "danger"
+    },
+    {
+      "id": 3,
+      "quartier": "Tanambao",
+      "titre": "Coupure eau",
+      "message": "Pas d'eau vendredi toute la journée",
+      "date": "2026-05-22",
+      "type": "eau"
+    }
+  ]
+}

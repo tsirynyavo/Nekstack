@@ -23,6 +23,14 @@ export const Dashboard = () => {
   const [time, setTime] = useState(new Date());
   const [generatingReport, setGeneratingReport] = useState(false);
   
+  // État des cartes : false = recto, true = verso
+  const [flippedCards, setFlippedCards] = useState({
+    card0: false,
+    card1: false,
+    card2: false,
+    card3: false
+  });
+  
   const { isOnline, showOfflineBanner, pendingCount } = useOfflineSync();
   const { data: wsData, connected: wsConnected } = useWebSocket('ws://localhost:8080');
   const { theme } = useDynamicTheme();
@@ -53,7 +61,7 @@ export const Dashboard = () => {
             { action: '🚀 Mode démo actif', time: 'Maintenant' },
             { action: '💾 Cache utilisé', time: 'Il y a 5s' }
           ],
-          systemHealth: { status: 'healthy', uptime: 120, memory: 128 }
+          systemHealth: { status: 'healthy', uptime: 86400, memory: 128 }
         });
       } finally {
         setLoading(false);
@@ -62,43 +70,57 @@ export const Dashboard = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (e.ctrlKey && e.key === 'k') {
-        e.preventDefault();
-        const stats = cache.getStats();
-        alert(`📊 STATS CACHE\n✓ Hits: ${stats.hits}\n✗ Misses: ${stats.misses}\n📈 Hit rate: ${stats.hitRate}\n💾 Taille: ${stats.size}`);
-      }
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        e.preventDefault();
-        console.log('%c🔧 DEBUG MODE', 'color: cyan; font-size: 16px');
-        console.log('Cache stats:', cache.getStats());
-        console.log('Online status:', isOnline);
-        console.log('WebSocket connected:', wsConnected);
-        console.log('Theme:', theme);
-        console.log('User:', user);
-      }
-      if (e.ctrlKey && e.key === 'r') {
-        e.preventDefault();
-        cache.clear();
-        window.location.reload();
-      }
-    };
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isOnline, wsConnected, theme, user]);
-
   const handleGenerateReport = async () => {
     setGeneratingReport(true);
     await generateReport(data);
     setTimeout(() => setGeneratingReport(false), 1500);
   };
 
+  // Toggle au clic
+  const toggleCard = (cardId) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardId]: !prev[cardId]
+    }));
+  };
+
   const statCards = [
-    { icon: Zap, label: 'LATENCE', value: wsData?.latency || data?.stats?.speed || '0.2ms', color: 'cyan', unit: 'ms' },
-    { icon: Shield, label: 'DISPONIBILITÉ', value: data?.stats?.availability || '100%', color: 'green', unit: '' },
-    { icon: Trophy, label: 'RANG MONDIAL', value: data?.stats?.rank || '#1', color: 'yellow', unit: '' },
-    { icon: Users, label: 'FORCE ÉQUIPE', value: '4', color: 'purple', unit: '' },
+    { 
+      id: 'card0',
+      icon: Zap, 
+      label: 'LATENCE', 
+      value: wsData?.latency || data?.stats?.speed || '0.2ms', 
+      color: 'cyan', 
+      unit: 'ms',
+      backInfo: 'Optimisation des temps de réponse ⚡'
+    },
+    { 
+      id: 'card1',
+      icon: Shield, 
+      label: 'DISPONIBILITÉ', 
+      value: data?.stats?.availability || '100%', 
+      color: 'green', 
+      unit: '',
+      backInfo: 'Service 24/7 garanti 🛡️'
+    },
+    { 
+      id: 'card2',
+      icon: Trophy, 
+      label: 'RANG MONDIAL', 
+      value: data?.stats?.rank || '#1', 
+      color: 'yellow', 
+      unit: '',
+      backInfo: 'Top performer mondial 🏆'
+    },
+    { 
+      id: 'card3',
+      icon: Users, 
+      label: 'FORCE ÉQUIPE', 
+      value: '4', 
+      color: 'purple', 
+      unit: '',
+      backInfo: '4 guerriers dédiés 👥'
+    },
   ];
 
   if (loading) {
@@ -121,14 +143,12 @@ export const Dashboard = () => {
                 animate={{ x: 0, opacity: 1 }}
                 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-glow"
               >
-                VANQUAIRE ARENA
+                Fianara Smart City
               </motion.h1>
-              <p className="text-gray-400 text-sm flex items-center gap-2 flex-wrap">
+              <div className="text-gray-400 text-sm flex items-center gap-2 flex-wrap">
                 <span>Bienvenue, {user?.email?.split('@')[0] || 'Champion'}</span>
                 <WebSocketStatus connected={wsConnected} />
-                {!isOnline && <span className="text-yellow-400 text-xs">⚠️ MODE OFFLINE</span>}
-                {theme && <span className="text-purple-400 text-xs">🎨 {theme}</span>}
-              </p>
+              </div>
             </div>
             
             <div className="flex items-center gap-3 flex-wrap justify-center">
@@ -153,44 +173,71 @@ export const Dashboard = () => {
                 {generatingReport ? 'GÉNÉRATION...' : 'RAPPORT'}
               </button>
               
-              <NeonButton onClick={logout} variant="danger" className="!w-auto px-5 py-2 text-sm">
-                <LogOut size={16} />
-                QUITTER
-              </NeonButton>
+              
             </div>
           </div>
         </div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+        {/* Cartes avec flip au clic */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {statCards.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-            >
-              <GlassCard className="p-5">
-                <div className="flex items-start justify-between">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br from-${stat.color}-500/10 to-${stat.color}-600/5`}>
-                    <stat.icon className={`w-6 h-6 text-${stat.color}-400`} />
+          {statCards.map((stat) => {
+            const isFlipped = flippedCards[stat.id];
+            
+            return (
+              <div
+                key={stat.id}
+                className="relative w-full h-48 cursor-pointer perspective-1000"
+                onClick={() => toggleCard(stat.id)}
+              >
+                <motion.div
+                  className="relative w-full h-full transition-all duration-500 preserve-3d"
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ duration: 0.4, type: "tween" }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Face avant - Recto */}
+                  <div 
+                    className="absolute w-full h-full backface-hidden"
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <GlassCard className="p-5 h-full">
+                      <div className="flex items-start justify-between">
+                        <div className={`p-3 rounded-xl bg-gradient-to-br from-${stat.color}-500/10 to-${stat.color}-600/5`}>
+                          <stat.icon className={`w-6 h-6 text-${stat.color}-400`} />
+                        </div>
+                        <div className="text-xs text-gray-500 font-mono">CLIC</div>
+                      </div>
+                      <p className="text-gray-400 text-sm mt-4 font-mono tracking-wider">{stat.label}</p>
+                      <p className="text-3xl font-bold text-white mt-1 tracking-tight">
+                        {stat.value}{stat.unit}
+                      </p>
+                      <Sparkles className="absolute bottom-4 right-4 w-4 h-4 text-cyan-400/50" />
+                    </GlassCard>
                   </div>
-                  {wsData?.cpu && stat.color === 'cyan' && (
-                    <div className="text-xs text-cyan-400 font-mono bg-black/30 px-2 py-1 rounded">
-                      {wsData.cpu.toFixed(0)}% CPU
-                    </div>
-                  )}
-                </div>
-                <p className="text-gray-400 text-sm mt-4 font-mono tracking-wider">{stat.label}</p>
-                <p className="text-3xl font-bold text-white mt-1 tracking-tight">
-                  {stat.value}{stat.unit}
-                </p>
-              </GlassCard>
-            </motion.div>
-          ))}
+                  
+                  {/* Face arrière - Verso */}
+                  <div 
+                    className="absolute w-full h-full backface-hidden"
+                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                  >
+                    <GlassCard className="p-5 h-full">
+                      <div className="flex flex-col justify-center h-full text-center">
+                        <p className="text-cyan-400 text-sm font-mono mb-2">📌 INFO</p>
+                        <p className="text-gray-300 text-sm">{stat.backInfo}</p>
+                        <div className="mt-3 w-12 h-0.5 bg-gradient-to-r from-cyan-400 to-transparent mx-auto" />
+                        <p className="text-gray-500 text-xs mt-3 font-mono">↺ CLIC POUR RETOURNER</p>
+                      </div>
+                    </GlassCard>
+                  </div>
+                </motion.div>
+              </div>
+            );
+          })}
         </div>
         
+        {/* Activité récente et état système */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <GlassCard>
             <div className="flex items-center gap-2 mb-4">
@@ -217,9 +264,6 @@ export const Dashboard = () => {
                   <span className="text-cyan-400 text-xs font-mono">{activity.time}</span>
                 </motion.div>
               ))}
-              {(!data?.recentActivity || data.recentActivity.length === 0) && (
-                <p className="text-gray-500 text-center py-8">Aucune activité récente</p>
-              )}
             </div>
           </GlassCard>
           
@@ -276,51 +320,16 @@ export const Dashboard = () => {
           </GlassCard>
         </div>
         
+        {/* Bannière de statut */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-cyan-600/20 border border-cyan-500/30 p-6 mb-8"
+          transition={{ delay: 0.3 }}
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-600/20 via-purple-600/20 to-cyan-600/20 border border-cyan-500/30 p-6"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10" />
-          <div className="relative flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4">
-              <div className="text-5xl animate-bounce">🏆</div>
-              <div>
-                <p className="text-cyan-400 text-sm font-mono tracking-wider">STATUT ACTUEL</p>
-                <p className="text-white text-xl font-bold">CHAMPIONS DU MONDE 2024</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 bg-green-500/20 px-4 py-2 rounded-full">
-              <TrendingUp size={18} className="text-green-400" />
-              <span className="text-green-400 font-mono text-sm font-bold">+100% PERFORMANCE</span>
-            </div>
-          </div>
+          
         </motion.div>
-        
-        <div className="mt-8 text-center">
-          <div className="border-t border-gray-800 pt-6">
-            <p className="text-gray-500 text-sm flex items-center justify-center gap-3 flex-wrap">
-              <span>⚔️ BACKEND EXPERT</span>
-              <span className="text-gray-700">✦</span>
-              <span>🎨 FRONTEND ULTIME</span>
-              <span className="text-gray-700">✦</span>
-              <span>🌀 3D MASTER</span>
-              <span className="text-gray-700">✦</span>
-              <span>📊 DATA VISUALIZATION</span>
-            </p>
-            <div className="mt-3 flex items-center justify-center gap-4 text-xs text-gray-600 font-mono">
-              <span>⌨️ Ctrl+K → Stats cache</span>
-              <span>|</span>
-              <span>Ctrl+Shift+D → Debug</span>
-              <span>|</span>
-              <span>Ctrl+R → Reset cache</span>
-            </div>
-            <p className="text-gray-700 text-xs mt-3 font-mono">
-              VANQUAIRE · 100% SUCCÈS · PRÊT POUR LA VICTOIRE
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );
